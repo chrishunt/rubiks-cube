@@ -5,9 +5,7 @@ describe CubeSolver::TwoCycle do
 
   let(:state) { solved_state }
 
-  let(:solved_state) {
-    'UF UR UB UL FL FR BR BL DF DR DB DL UFL URF UBR ULB DLF DFR DRB DBL'
-  }
+  let(:solved_state) { CubeSolver::Cube::SOLVED_STATE }
 
   it 'is initialized with a cube state' do
     expect(subject.state).to eq state
