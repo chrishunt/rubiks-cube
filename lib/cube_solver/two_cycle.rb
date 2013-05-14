@@ -1,6 +1,7 @@
 require 'cube_solver/cube'
 
 module CubeSolver
+  # Very inefficient two-cycle solving algorithm, useful for learning
   class TwoCycle
     attr_reader :cube
 
