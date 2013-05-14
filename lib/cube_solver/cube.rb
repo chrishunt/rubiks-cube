@@ -12,6 +12,10 @@ module CubeSolver
       @state = build_state_from_string state
     end
 
+    def ==(other)
+      state == other.state
+    end
+
     def state
       @state.map(&:state).flatten.join ' '
     end

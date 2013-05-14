@@ -11,6 +11,16 @@ describe CubeSolver::Cube do
     expect(subject.state).to eq state
   end
 
+  describe '==' do
+    it 'returns true when two cubes have the same state' do
+      expect(subject).to eq described_class.new(state)
+    end
+
+    it 'returns false when two cubes do not have the same state' do
+      expect(subject).to_not eq described_class.new(state).d!
+    end
+  end
+
   describe '#solved?' do
     it 'returns true when cube is solved' do
       expect(subject.solved?).to be_true
