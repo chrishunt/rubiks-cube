@@ -13,18 +13,7 @@ module CubeSolver
     end
 
     def perform!(algorithm)
-      algorithm.split.each do |move|
-        operation = "#{move[0].downcase}!"
-
-        case modifier = move[-1]
-          when "'"
-            3.times { send operation }
-          when "2"
-            2.times { send operation }
-          else
-            send operation
-        end
-      end
+      algorithm.split.each { |move| perform_move! move }
     end
 
     def r!
@@ -89,6 +78,19 @@ module CubeSolver
 
     def rotate(cubies)
       cubies.each { |cubie| @state[cubie].rotate! }
+    end
+
+    def perform_move!(move)
+      operation = "#{move[0].downcase}!"
+
+      case modifier = move[-1]
+        when "'"
+          3.times { send operation }
+        when "2"
+          2.times { send operation }
+        else
+          send operation
+      end
     end
   end
 end
