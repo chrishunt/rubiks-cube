@@ -1,7 +1,13 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    cane (2.5.2)
+      parallel
+    cane-hashcheck (0.9.0)
+      cane
     diff-lcs (1.2.4)
+    parallel (0.6.4)
+    rake (10.0.4)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -15,4 +21,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  cane-hashcheck
+  rake
   rspec
