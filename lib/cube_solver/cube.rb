@@ -5,12 +5,19 @@ module CubeSolver
   class Cube
     attr_reader :state
 
+    SOLVED_STATE =
+      'UF UR UB UL FL FR BR BL DF DR DB DL UFL URF UBR ULB DLF DFR DRB DBL'
+
     def initialize(state)
       @state = build_state_from_string state
     end
 
     def state
       @state.map(&:state).flatten.join ' '
+    end
+
+    def solved?
+      state == SOLVED_STATE
     end
 
     def perform!(algorithm)

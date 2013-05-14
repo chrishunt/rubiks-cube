@@ -13,6 +13,17 @@ describe CubeSolver::Cube do
     expect(subject.state).to eq state
   end
 
+  describe '#solved?' do
+    it 'returns true when cube is solved' do
+      expect(subject.solved?).to be_true
+    end
+
+    it 'returns false when cube is not solved' do
+      subject.l!.r!
+      expect(subject.solved?).to be_false
+    end
+  end
+
   describe '#perform!' do
     it 'performs the algorithm on the cube' do
       subject.perform! "U2 D' L R F B"
