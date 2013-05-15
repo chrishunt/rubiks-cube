@@ -5,7 +5,7 @@ describe CubeSolver::TwoCycle do
 
   let(:state) { solved_state }
 
-  let(:solved_state) { CubeSolver::Cube::SOLVED_STATE }
+  let(:solved_state) { CubeSolver::Cube::SOLVED_STATE.join ' ' }
 
   it 'is initialized with a cube state' do
     expect(subject.state).to eq state
