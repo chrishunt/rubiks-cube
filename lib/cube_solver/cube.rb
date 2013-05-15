@@ -29,6 +29,14 @@ module CubeSolver
       @state[12..-1]
     end
 
+    def unsolved_edge_locations
+      unsolved_locations_for :edges
+    end
+
+    def unsolved_corner_locations
+      unsolved_locations_for :corners
+    end
+
     def location_for(cubie)
       if (location = SOLVED_STATE.index cubie.state) >= 12
         location -= 12
@@ -91,6 +99,12 @@ module CubeSolver
 
     def build_state_from_string(state)
       state.split.map { |state| CubeSolver::Cubie.new state }
+    end
+
+    def unsolved_locations_for(type)
+      send(type).each_with_index.map do |cubie, location|
+        location == location_for(cubie) ? nil : location
+      end.compact
     end
 
     def turn(sequence)

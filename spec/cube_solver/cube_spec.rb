@@ -37,6 +37,42 @@ describe CubeSolver::Cube do
     end
   end
 
+  describe '#unsolved_edge_locations' do
+    context 'with unsolved edges' do
+      let(:state) {
+        'UF UL UB UR FL FR BR BL DF DL DB DR UFL URF UBR ULB DLF DFR DRB DBL'
+      }
+
+      it 'returns the location of all unsolved edges' do
+        expect(subject.unsolved_edge_locations).to eq [1, 3, 9, 11]
+      end
+    end
+
+    context 'with solved edges' do
+      it 'returns an empty array' do
+        expect(subject.unsolved_edge_locations).to eq []
+      end
+    end
+  end
+
+  describe '#unsolved_corner_locations' do
+    context 'with unsolved corners' do
+      let(:state){
+        'UF UR UB UL FL FR BR BL DF DR DB DL ULB UBR URF UFL DLF DFR DRB DBL'
+      }
+
+      it 'returns the locations of all unsolved corners' do
+        expect(subject.unsolved_corner_locations).to eq [0, 1, 2, 3]
+      end
+    end
+
+    context 'with solved corners' do
+      it 'returns an empty array' do
+        expect(subject.unsolved_corner_locations).to eq []
+      end
+    end
+  end
+
   describe '#location_for' do
     CubeSolver::Cube::SOLVED_STATE.each_with_index do |cubie, location|
       it "returns the correct location for the '#{cubie}' cubie" do
