@@ -1,4 +1,5 @@
 require 'cube_solver/cubie'
+require 'cube_solver/algorithms'
 
 module CubeSolver
   # Standard 3x3x3 Rubik's Cube with normal turn operations (l, r, u, d, f, b)
@@ -160,16 +161,7 @@ module CubeSolver
     end
 
     def reverse(algorithm)
-      algorithm.split.map do |move|
-        case modifier = move[-1]
-        when "'"
-          move[0]
-        when "2"
-          move
-        else
-          "#{move}'"
-        end
-      end.reverse.join ' '
+      CubeSolver::Algorithms.reverse algorithm
     end
   end
 end
