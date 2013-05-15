@@ -9,6 +9,20 @@ describe CubeSolver::Cubie do
     expect(subject.state).to eq state
   end
 
+  describe '==' do
+    context 'when the state equals the state of the other' do
+      it 'returns true' do
+        expect(subject == described_class.new(state)).to be_true
+      end
+    end
+
+    context 'when the state does not equal the state of the other' do
+      it 'returns true' do
+        expect(subject == described_class.new('UB')).to be_false
+      end
+    end
+  end
+
   describe '#to_s' do
     it 'converts the cubie to a string' do
       expect(subject.to_s).to eq state

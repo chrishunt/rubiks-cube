@@ -8,6 +8,10 @@ module CubeSolver
       @cubie = state.size == 2 ? EdgeCubie.new(state) : CornerCubie.new(state)
     end
 
+    def ==(other)
+      state == other.state
+    end
+
     def state
       @cubie.state
     end
