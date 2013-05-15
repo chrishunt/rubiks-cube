@@ -48,6 +48,14 @@ module CubeSolver
       state == SOLVED_STATE.join(' ')
     end
 
+    def edge_solved?(edge)
+      cubie_solved? :edges, edge
+    end
+
+    def corner_solved?(corner)
+      cubie_solved? :corners, corner
+    end
+
     def has_edges_solved?
       unsolved_edge_locations.empty?
     end
@@ -110,6 +118,10 @@ module CubeSolver
 
     def build_state_from_string(state)
       state.split.map { |state| CubeSolver::Cubie.new state }
+    end
+
+    def cubie_solved?(type, cubie)
+      send(type).index(cubie) == location_for(cubie)
     end
 
     def unsolved_locations_for(type)

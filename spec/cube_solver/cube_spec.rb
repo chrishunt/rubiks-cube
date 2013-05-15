@@ -107,6 +107,30 @@ describe CubeSolver::Cube do
     end
   end
 
+  describe '#edge_solved?' do
+    it 'returns true when the cubie is solved' do
+      subject.u
+
+      solved_edge = subject.edges[4]
+      unsolved_edge = subject.edges[0]
+
+      expect(subject.edge_solved? unsolved_edge).to be_false
+      expect(subject.edge_solved? solved_edge).to be_true
+    end
+  end
+
+  describe '#corner_solved?' do
+    it 'returns true when the cubie is solved' do
+      subject.f
+
+      solved_corner = subject.corners[2]
+      unsolved_corner = subject.corners[1]
+
+      expect(subject.corner_solved? unsolved_corner).to be_false
+      expect(subject.corner_solved? solved_corner).to be_true
+    end
+  end
+
   describe '#has_edges_solved?' do
     context 'when the edges are solved, but corners are not' do
       let(:state) {
