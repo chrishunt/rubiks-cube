@@ -49,6 +49,14 @@ module CubeSolver
       state == SOLVED_STATE.join(' ')
     end
 
+    def has_edges_solved?
+      unsolved_edge_locations.empty?
+    end
+
+    def has_corners_solved?
+      unsolved_corner_locations.empty?
+    end
+
     def perform!(algorithm)
       algorithm.split.each { |move| perform_move! move }
     end

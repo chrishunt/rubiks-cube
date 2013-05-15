@@ -97,6 +97,50 @@ describe CubeSolver::Cube do
     end
   end
 
+  describe '#has_edges_solved?' do
+    context 'when the edges are solved, but corners are not' do
+      let(:state) {
+        'UF UR UB UL FL FR BR BL DF DR DB DL ULB UBR URF UFL DBL DRB DFR DLF'
+      }
+
+      it 'returns true' do
+        expect(subject).to have_edges_solved
+      end
+    end
+
+    context 'when the edges are not solved, but corners are' do
+      let(:state) {
+        'UL UF UB UR FL FR BR BL DF DR DB DL UFL URF UBR ULB DLF DFR DRB DBL'
+      }
+
+      it 'returns false' do
+        expect(subject).to_not have_edges_solved
+      end
+    end
+  end
+
+  describe '#has_corners_solved?' do
+    context 'when the corners are solved, but the edges are not' do
+      let(:state) {
+        'UL UF UB UR FL FR BR BL DF DR DB DL UFL URF UBR ULB DLF DFR DRB DBL'
+      }
+
+      it 'returns true' do
+        expect(subject).to have_corners_solved
+      end
+    end
+
+    context 'when the corners are not solved, but the edges are solved' do
+      let(:state) {
+        'UF UR UB UL FL FR BR BL DF DR DB DL ULB UBR URF UFL DBL DRB DFR DLF'
+      }
+
+      it 'returns false' do
+        expect(subject).to_not have_corners_solved
+      end
+    end
+  end
+
   describe '#perform!' do
     it 'performs the algorithm on the cube' do
       subject.perform! "U2 D' L R F B"
