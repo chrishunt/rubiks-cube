@@ -17,5 +17,31 @@ module CubeSolver
       T = "R U R' U' R' F R2 U' R' U' R U R' F'"
       Y = "U F R U' R' U' R U R' F' R U R' U' R' F R F' U'"
     end
+
+    Setup = {
+      edge: {
+        0  => "L2 R2 U R2",
+        2  => "L2 R2 U' R2",
+        3  => "",
+        4  => "U' F U",
+        5  => "U' F' U",
+        6  => "U B U'",
+        7  => "U B' U'",
+        8  => "D' L2",
+        9  => "D2 L2",
+        10 => "D L2",
+        11 => "L2"
+      },
+
+      corner: {
+        1 => "R2 D' R2",
+        2 => "",
+        3 => "B2 D' R2",
+        4 => "D R2",
+        5 => "R2",
+        6 => "D' R2",
+        7 => "D2 R2",
+      }
+    }
   end
 end
