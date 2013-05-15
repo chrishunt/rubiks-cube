@@ -21,6 +21,14 @@ module CubeSolver
       @state.join ' '
     end
 
+    def edges
+      @state[0..11]
+    end
+
+    def corners
+      @state[12..-1]
+    end
+
     def solved?
       state == SOLVED_STATE.join(' ')
     end

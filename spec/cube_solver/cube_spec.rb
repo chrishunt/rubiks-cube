@@ -21,6 +21,22 @@ describe CubeSolver::Cube do
     end
   end
 
+  describe '#edges' do
+    it 'returns all the edges' do
+      expect(subject.edges).to eq(
+        state.split[0..11].map { |cubie| CubeSolver::Cubie.new cubie }
+      )
+    end
+  end
+
+  describe '#corners' do
+    it 'returns all the corners' do
+      expect(subject.corners).to eq(
+        state.split[12..-1].map { |cubie| CubeSolver::Cubie.new cubie }
+      )
+    end
+  end
+
   describe '#solved?' do
     it 'returns true when cube is solved' do
       expect(subject.solved?).to be_true
