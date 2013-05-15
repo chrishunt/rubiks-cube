@@ -3,12 +3,24 @@ require 'cube_solver/cube'
 describe CubeSolver::Cube do
   subject { described_class.new state }
 
-  let(:state) { solved_state }
+  let(:state) { nil }
 
-  let(:solved_state) { CubeSolver::Cube::SOLVED_STATE.join ' ' }
+  describe '#initialize' do
+    context 'when a state is provided' do
+      let(:state) { 'some state' }
 
-  it 'is initialized with a state' do
-    expect(subject.state).to eq state
+      it 'is initialized with the state' do
+        expect(subject.state).to eq state
+      end
+    end
+
+    context 'when no state is provided' do
+      let(:state) { nil }
+
+      it 'is initialized with the solved state' do
+        expect(subject.state).to eq CubeSolver::Cube::SOLVED_STATE.join ' '
+      end
+    end
   end
 
   describe '==' do
@@ -24,7 +36,7 @@ describe CubeSolver::Cube do
   describe '#edges' do
     it 'returns all the edges' do
       expect(subject.edges).to eq(
-        state.split[0..11].map { |cubie| CubeSolver::Cubie.new cubie }
+        subject.state.split[0..11].map { |cubie| CubeSolver::Cubie.new cubie }
       )
     end
   end
@@ -32,7 +44,7 @@ describe CubeSolver::Cube do
   describe '#corners' do
     it 'returns all the corners' do
       expect(subject.corners).to eq(
-        state.split[12..-1].map { |cubie| CubeSolver::Cubie.new cubie }
+        subject.state.split[12..-1].map { |cubie| CubeSolver::Cubie.new cubie }
       )
     end
   end
@@ -180,7 +192,7 @@ describe CubeSolver::Cube do
       subject.perform! "U2 D' L R F B"
 
       expect(subject.state).to eq(
-        described_class.new(solved_state).u.u.d.d.d.l.r.f.b.state
+        described_class.new.u.u.d.d.d.l.r.f.b.state
       )
     end
 

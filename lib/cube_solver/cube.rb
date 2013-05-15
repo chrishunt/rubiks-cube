@@ -10,8 +10,10 @@ module CubeSolver
       UF UR UB UL FL FR BR BL DF DR DB DL UFL URF UBR ULB DLF DFR DRB DBL
     )
 
-    def initialize(state)
-      @state = build_state_from_string state
+    def initialize(state = nil)
+      @state = build_state_from_string(
+        state.to_s.empty? ? SOLVED_STATE.join(' ') : state
+      )
     end
 
     def ==(other)
