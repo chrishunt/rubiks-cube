@@ -38,9 +38,8 @@ module CubeSolver
     end
 
     def location_for(cubie)
-      if (location = SOLVED_STATE.index cubie.state) >= 12
-        location -= 12
-      end
+      cubie.rotate! while (location = SOLVED_STATE.index cubie.state) == nil
+      location -= 12 if location >= 12
 
       location
     end

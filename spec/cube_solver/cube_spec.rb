@@ -84,6 +84,16 @@ describe CubeSolver::Cube do
         expect(subject.location_for cubie).to eq location
       end
     end
+
+    context 'when the cubie has been rotated' do
+      let(:cubie) { subject.corners.first }
+
+      before { cubie.rotate! }
+
+      it 'still finds the correct location' do
+        expect(subject.location_for cubie).to eq 0
+      end
+    end
   end
 
   describe '#solved?' do
