@@ -37,6 +37,19 @@ describe CubeSolver::Cube do
     end
   end
 
+  describe '#location_for' do
+    CubeSolver::Cube::SOLVED_STATE.each_with_index do |cubie, location|
+      it "returns the correct location for the '#{cubie}' cubie" do
+        # Both corner and edge index begins at zero
+        location -= 12 if location >= 12
+
+        cubie = CubeSolver::Cubie.new cubie
+
+        expect(subject.location_for cubie).to eq location
+      end
+    end
+  end
+
   describe '#solved?' do
     it 'returns true when cube is solved' do
       expect(subject).to be_solved

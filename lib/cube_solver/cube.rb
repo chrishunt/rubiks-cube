@@ -29,6 +29,14 @@ module CubeSolver
       @state[12..-1]
     end
 
+    def location_for(cubie)
+      if (location = SOLVED_STATE.index cubie.state) >= 12
+        location -= 12
+      end
+
+      location
+    end
+
     def solved?
       state == SOLVED_STATE.join(' ')
     end
