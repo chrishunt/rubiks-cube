@@ -9,6 +9,12 @@ describe CubeSolver::Cubie do
     expect(subject.state).to eq state
   end
 
+  describe '#to_s' do
+    it 'converts the cubie to a string' do
+      expect(subject.to_s).to eq state
+    end
+  end
+
   context 'with an edge piece' do
     let(:state) { 'UF' }
 

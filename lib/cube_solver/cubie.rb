@@ -16,5 +16,9 @@ module CubeSolver
       @cubie.rotate!
       self
     end
+
+    def to_s
+      @cubie.state
+    end
   end
 end

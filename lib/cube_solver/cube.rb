@@ -18,7 +18,7 @@ module CubeSolver
     end
 
     def state
-      @state.map(&:state).flatten.join ' '
+      @state.join ' '
     end
 
     def solved?
