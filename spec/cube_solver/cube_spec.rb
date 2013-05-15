@@ -151,6 +151,16 @@ describe CubeSolver::Cube do
     end
   end
 
+  describe '#reverse_perform!' do
+    it 'performs the algorithm in reverse on the cube' do
+      subject.f.f.f.b.l.l.u.u.u.r
+
+      subject.reverse_perform! "F' B L2 U' R"
+
+      expect(subject).to be_solved
+    end
+  end
+
   describe '#r' do
     it 'turns the right face 90 degrees clockwise' do
       subject.r

@@ -61,6 +61,10 @@ module CubeSolver
       algorithm.split.each { |move| perform_move! move }
     end
 
+    def reverse_perform!(algorithm)
+      perform! reverse(algorithm)
+    end
+
     def r
       turn [1, 5, 9, 6]
       turn [13, 17, 18, 14]
@@ -142,6 +146,19 @@ module CubeSolver
         else
           send operation
       end
+    end
+
+    def reverse(algorithm)
+      algorithm.split.map do |move|
+        case modifier = move[-1]
+        when "'"
+          move[0]
+        when "2"
+          move
+        else
+          "#{move}'"
+        end
+      end.reverse.join ' '
     end
   end
 end
