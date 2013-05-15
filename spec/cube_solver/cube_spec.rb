@@ -183,6 +183,12 @@ describe CubeSolver::Cube do
         described_class.new(solved_state).u.u.d.d.d.l.r.f.b.state
       )
     end
+
+    it 'returns the algorithm that was performed' do
+      algorithm = "F2 U' L"
+
+      expect(subject.perform! algorithm).to eq algorithm
+    end
   end
 
   describe '#undo!' do

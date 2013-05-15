@@ -67,6 +67,7 @@ module CubeSolver
 
     def perform!(algorithm)
       algorithm.split.each { |move| perform_move! move }
+      algorithm
     end
 
     def undo!(algorithm)
