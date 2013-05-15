@@ -39,12 +39,12 @@ describe CubeSolver::Cube do
 
   describe '#solved?' do
     it 'returns true when cube is solved' do
-      expect(subject.solved?).to be_true
+      expect(subject).to be_solved
     end
 
     it 'returns false when cube is not solved' do
       subject.l
-      expect(subject.solved?).to be_false
+      expect(subject).to_not be_solved
     end
   end
 
