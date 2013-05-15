@@ -3,10 +3,10 @@ GEM
   specs:
     cane (2.5.2)
       parallel
-    cane-hashcheck (0.9.0)
+    cane-hashcheck (1.1.0)
       cane
     diff-lcs (1.2.4)
-    parallel (0.6.4)
+    parallel (0.6.5)
     rake (10.0.4)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
