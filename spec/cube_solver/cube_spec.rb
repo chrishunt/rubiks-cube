@@ -73,7 +73,7 @@ describe CubeSolver::Cube do
     end
   end
 
-  describe '#location_for' do
+  describe '#solved_location_for' do
     CubeSolver::Cube::SOLVED_STATE.each_with_index do |cubie, location|
       it "returns the correct location for the '#{cubie}' cubie" do
         # Both corner and edge index begins at zero
@@ -81,7 +81,7 @@ describe CubeSolver::Cube do
 
         cubie = CubeSolver::Cubie.new cubie
 
-        expect(subject.location_for cubie).to eq location
+        expect(subject.solved_location_for cubie).to eq location
       end
     end
 
@@ -91,7 +91,7 @@ describe CubeSolver::Cube do
       before { cubie.rotate! }
 
       it 'still finds the correct location' do
-        expect(subject.location_for cubie).to eq 0
+        expect(subject.solved_location_for cubie).to eq 0
       end
     end
   end

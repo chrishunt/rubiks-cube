@@ -37,7 +37,7 @@ module CubeSolver
       unsolved_locations_for :corners
     end
 
-    def location_for(cubie)
+    def solved_location_for(cubie)
       cubie.rotate! while (location = SOLVED_STATE.index cubie.state) == nil
       location -= 12 if location >= 12
 
@@ -121,12 +121,12 @@ module CubeSolver
     end
 
     def cubie_solved?(type, cubie)
-      send(type).index(cubie) == location_for(cubie)
+      send(type).index(cubie) == solved_location_for(cubie)
     end
 
     def unsolved_locations_for(type)
       send(type).each_with_index.map do |cubie, location|
-        location == location_for(cubie) ? nil : location
+        location == solved_location_for(cubie) ? nil : location
       end.compact
     end
 
