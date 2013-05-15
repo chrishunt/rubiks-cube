@@ -17,7 +17,7 @@ describe CubeSolver::Cube do
     end
 
     it 'returns false when two cubes do not have the same state' do
-      expect(subject).to_not eq described_class.new(state).d!
+      expect(subject).to_not eq described_class.new(state).d
     end
   end
 
@@ -27,7 +27,7 @@ describe CubeSolver::Cube do
     end
 
     it 'returns false when cube is not solved' do
-      subject.l!.r!
+      subject.l
       expect(subject.solved?).to be_false
     end
   end
@@ -37,14 +37,14 @@ describe CubeSolver::Cube do
       subject.perform! "U2 D' L R F B"
 
       expect(subject.state).to eq(
-        described_class.new(solved_state).u!.u!.d!.d!.d!.l!.r!.f!.b!.state
+        described_class.new(solved_state).u.u.d.d.d.l.r.f.b.state
       )
     end
   end
 
-  describe '#r!' do
+  describe '#r' do
     it 'turns the right face 90 degrees clockwise' do
-      subject.r!
+      subject.r
 
       expect(subject.state).to eq(
         'UF FR UB UL FL DR UR BL DF BR DB DL UFL FRD FUR ULB DLF BDR BRU DBL'
@@ -52,9 +52,9 @@ describe CubeSolver::Cube do
     end
   end
 
-  describe '#l!' do
+  describe '#l' do
     it 'turns the left face 90 degrees clockwise' do
-      subject.l!
+      subject.l
 
       expect(subject.state).to eq(
         'UF UR UB BL UL FR BR DL DF DR DB FL BUL URF UBR BLD FLU DFR DRB FDL'
@@ -62,9 +62,9 @@ describe CubeSolver::Cube do
     end
   end
 
-  describe '#u!' do
+  describe '#u' do
     it 'turns the up face 90 degrees clockwise' do
-      subject.u!
+      subject.u
 
       expect(subject.state).to eq(
         'UR UB UL UF FL FR BR BL DF DR DB DL URF UBR ULB UFL DLF DFR DRB DBL'
@@ -72,9 +72,9 @@ describe CubeSolver::Cube do
     end
   end
 
-  describe '#d!' do
+  describe '#d' do
     it 'turns the down face 90 degrees clockwise' do
-      subject.d!
+      subject.d
 
       expect(subject.state).to eq(
         'UF UR UB UL FL FR BR BL DL DF DR DB UFL URF UBR ULB DBL DLF DFR DRB'
@@ -82,9 +82,9 @@ describe CubeSolver::Cube do
     end
   end
 
-  describe '#f!' do
+  describe '#f' do
     it 'turns the front face 90 degrees clockwise' do
-      subject.f!
+      subject.f
 
       expect(subject.state).to eq(
         'LF UR UB UL FD FU BR BL RF DR DB DL LFD LUF UBR ULB RDF RFU DRB DBL'
@@ -92,9 +92,9 @@ describe CubeSolver::Cube do
     end
   end
 
-  describe '#b!' do
+  describe '#b' do
     it 'turns the back face 90 degrees clockwise' do
-      subject.b!
+      subject.b
 
       expect(subject.state).to eq(
         'UF UR RB UL FL FR BD BU DF DR LB DL UFL URF RBD RUB DLF DFR LDB LBU'
