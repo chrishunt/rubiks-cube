@@ -17,20 +17,19 @@ module CubeSolver
 
     def solve!
       @solution ||= begin
-        solution =  permutation_solution
-        solution << orientation_solution
+        solution = []
+        solution << solution_for(:permutation)
+        solution << solution_for(:orientation)
         solution.flatten
       end
     end
 
     private
 
-    def permutation_solution
-      [:edge, :corner].map { |type| permutation_solution_for type }
-    end
-
-    def orientation_solution
-      [:edge, :corner].map { |type| orientation_solution_for type }
+    def solution_for(step)
+      [:edge, :corner].map do |cubie_type|
+        send "#{step}_solution_for", cubie_type
+      end
     end
 
     def permutation_solution_for(cubie)
