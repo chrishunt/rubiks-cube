@@ -1,6 +1,6 @@
 module RubiksCube
   # Very inefficient two-cycle solving algorithm, useful for blindfold
-  class TwoCycleSolver
+  class TwoCycleSolution
     attr_reader :cube, :solution
 
     def initialize(cube)

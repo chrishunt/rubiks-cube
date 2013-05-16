@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe RubiksCube::TwoCycleSolver do
+describe RubiksCube::TwoCycleSolution do
   subject { described_class.new cube }
 
   let(:cube)  { RubiksCube::Cube.new state }
