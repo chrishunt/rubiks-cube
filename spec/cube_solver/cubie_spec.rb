@@ -29,21 +29,19 @@ describe CubeSolver::Cubie do
     end
   end
 
-  context 'with an edge piece' do
-    let(:state) { 'UF' }
+  describe '#rotate!' do
+    context 'with an edge piece' do
+      let(:state) { 'UF' }
 
-    describe '#rotate!' do
       it 'flips the cubie' do
         expect(subject.rotate!.state).to eq 'FU'
         expect(subject.rotate!.state).to eq state
       end
     end
-  end
 
-  context 'with a corner piece' do
-    let(:state) { 'URF' }
+    context 'with a corner piece' do
+      let(:state) { 'URF' }
 
-    describe '#rotate!' do
       it 'rotates the cubie once couter clockwise' do
         expect(subject.rotate!.state).to eq 'FUR'
         expect(subject.rotate!.state).to eq 'RFU'
@@ -51,4 +49,19 @@ describe CubeSolver::Cubie do
       end
     end
   end
+
+  describe '#rotate' do
+    it "returns a new cubie that's been rotated" do
+      expect(subject.rotate).to eq described_class.new(state).rotate!
+    end
+
+    it 'does not modify the cubie' do
+      original_state = subject.state
+
+      subject.rotate
+
+      expect(subject.state).to eq original_state
+    end
+  end
+
 end

@@ -18,6 +18,10 @@ module CubeSolver
       self
     end
 
+    def rotate
+      Cubie.new(state).rotate!
+    end
+
     def to_s
       @cubie.state
     end
