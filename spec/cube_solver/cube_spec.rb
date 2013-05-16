@@ -280,4 +280,14 @@ describe CubeSolver::Cube do
       )
     end
   end
+
+  describe '#m' do
+    it 'turns the middle slice 90 degrees clockwise (from L)' do
+      subject.m
+
+      expect(subject.state).to eq(
+        'BU UR BD UL FL FR BR BL FU DR FD DL UFL URF UBR ULB DLF DFR DRB DBL'
+      )
+    end
+  end
 end

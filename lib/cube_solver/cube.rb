@@ -117,6 +117,11 @@ module CubeSolver
       self
     end
 
+    def m
+      turn [0, 2, 10, 8]
+      rotate [0, 2, 10, 8]
+    end
+
     private
 
     def build_state_from_string(state)
