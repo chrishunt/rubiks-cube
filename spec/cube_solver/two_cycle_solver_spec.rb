@@ -30,7 +30,7 @@ describe CubeSolver::TwoCycleSolver do
       end
     end
 
-    context 'and they are already placed' do
+    context 'when corners need to be swapped' do
       let(:state) {
         'UL UR UB UF FL FR BR BL DF DR DB DL UBR URF UFL ULB DLF DFR DRB DBL'
       }
