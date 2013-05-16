@@ -44,7 +44,7 @@ describe CubeSolver::TwoCycleSolver do
       "F' U2 D2 F2 R' D2 B L2 F L2 D2 F U2 F B L U' D' R' F D F' L2 F' B2"
     ].each do |scramble|
       context "with scramble (#{scramble})" do
-        before { subject.cube.perform! scramble }
+        before { cube.perform! scramble }
 
         it_should_behave_like 'a cube that can be solved'
       end
