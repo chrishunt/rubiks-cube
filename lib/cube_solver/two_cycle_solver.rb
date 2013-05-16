@@ -45,7 +45,7 @@ module CubeSolver
     end
 
     def swap(type, location)
-      setup = CubeSolver::Algorithms::Setup.fetch(type).fetch(location)
+      setup = CubeSolver::Algorithms::PLL::Setup.fetch(type).fetch(location)
       swap  = send("#{type}_swap_algorithm")
       undo  = CubeSolver::Algorithms.reverse(setup)
 
