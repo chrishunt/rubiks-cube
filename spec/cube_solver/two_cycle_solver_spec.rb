@@ -15,31 +15,27 @@ describe CubeSolver::TwoCycleSolver do
     end
 
     context 'when edges need to be swapped' do
-      context 'and they are already placed' do
-        let(:state) {
-          'UF UL UB UR FL FR BR BL DF DR DB DL UFL UBR URF ULB DLF DFR DRB DBL'
-        }
+      let(:state) {
+        'UF UL UB UR FL FR BR BL DF DR DB DL UFL UBR URF ULB DLF DFR DRB DBL'
+      }
 
-        it_should_behave_like 'a cube that can be solved'
+      it_should_behave_like 'a cube that can be solved'
 
-        it 'returns the solution and saves it for later' do
-          expected_solution = "swap\t(#{CubeSolver::Algorithms::PLL::T})"
+      it 'returns the solution and saves it for later' do
+        expected_solution = "swap\t(#{CubeSolver::Algorithms::PLL::T})"
 
-          expect(subject.solution).to be_nil
-          expect(subject.solve!).to eq expected_solution
-          expect(subject.solution).to eq expected_solution
-        end
+        expect(subject.solution).to be_nil
+        expect(subject.solve!).to eq expected_solution
+        expect(subject.solution).to eq expected_solution
       end
     end
 
-    context 'when corners need to be swapped' do
-      context 'and they are already placed' do
-        let(:state) {
-          'UL UR UB UF FL FR BR BL DF DR DB DL UBR URF UFL ULB DLF DFR DRB DBL'
-        }
+    context 'and they are already placed' do
+      let(:state) {
+        'UL UR UB UF FL FR BR BL DF DR DB DL UBR URF UFL ULB DLF DFR DRB DBL'
+      }
 
-        it_should_behave_like 'a cube that can be solved'
-      end
+      it_should_behave_like 'a cube that can be solved'
     end
 
     [
