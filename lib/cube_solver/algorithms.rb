@@ -20,8 +20,8 @@ module CubeSolver
 
     Setup = {
       edge: {
-        0  => "L2 R2 U R2",
-        2  => "L2 R2 U' R2",
+        0  => "M2 D L2",
+        2  => "M2 D' L2",
         3  => "",
         4  => "U' F U",
         5  => "U' F' U",
