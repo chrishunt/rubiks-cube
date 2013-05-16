@@ -3,8 +3,8 @@ module CubeSolver
   class TwoCycleSolver
     attr_reader :cube, :solution
 
-    def initialize(state)
-      @cube = CubeSolver::Cube.new state
+    def initialize(cube)
+      @cube = cube
     end
 
     def state
