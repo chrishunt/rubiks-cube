@@ -29,23 +29,6 @@ module CubeSolver
       @state[12..-1]
     end
 
-    def unpermuted_edge_locations
-      unpermuted_locations_for :edges
-    end
-
-    def unpermuted_corner_locations
-      unpermuted_locations_for :corners
-    end
-
-    def permuted_location_for(cubie)
-      while (location = SOLVED_STATE.index cubie.state) == nil
-        cubie = cubie.rotate
-      end
-
-      location -= 12 if location >= 12
-      location
-    end
-
     def solved?
       state == SOLVED_STATE.join(' ')
     end
@@ -64,6 +47,23 @@ module CubeSolver
 
     def has_corners_permuted?
       unpermuted_corner_locations.empty?
+    end
+
+    def unpermuted_edge_locations
+      unpermuted_locations_for :edges
+    end
+
+    def unpermuted_corner_locations
+      unpermuted_locations_for :corners
+    end
+
+    def permuted_location_for(cubie)
+      while (location = SOLVED_STATE.index cubie.state) == nil
+        cubie = cubie.rotate
+      end
+
+      location -= 12 if location >= 12
+      location
     end
 
     def perform!(algorithm)
