@@ -120,6 +120,7 @@ module CubeSolver
     def m
       turn [0, 2, 10, 8]
       rotate [0, 2, 10, 8]
+      self
     end
 
     private

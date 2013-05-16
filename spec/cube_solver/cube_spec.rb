@@ -221,73 +221,79 @@ describe CubeSolver::Cube do
     end
   end
 
-  describe '#r' do
-    it 'turns the right face 90 degrees clockwise' do
-      subject.r
+  describe 'face turns' do
+    shared_examples_for 'a face turn' do
+      it "rotates the face 90 degrees clockwise" do
+        subject.public_send direction
+        expect(subject.state).to eq expected_state
+      end
 
-      expect(subject.state).to eq(
+      it 'is chainable' do
+        expect(subject.public_send direction).to eq subject
+      end
+    end
+
+    describe '#r' do
+      let(:direction) { 'r' }
+      let(:expected_state) {
         'UF FR UB UL FL DR UR BL DF BR DB DL UFL FRD FUR ULB DLF BDR BRU DBL'
-      )
+      }
+
+      it_should_behave_like 'a face turn'
     end
-  end
 
-  describe '#l' do
-    it 'turns the left face 90 degrees clockwise' do
-      subject.l
-
-      expect(subject.state).to eq(
+    describe '#l' do
+      let(:direction) { 'l' }
+      let(:expected_state) {
         'UF UR UB BL UL FR BR DL DF DR DB FL BUL URF UBR BLD FLU DFR DRB FDL'
-      )
+      }
+
+      it_should_behave_like 'a face turn'
     end
-  end
 
-  describe '#u' do
-    it 'turns the up face 90 degrees clockwise' do
-      subject.u
-
-      expect(subject.state).to eq(
+    describe '#u' do
+      let(:direction) { 'u' }
+      let(:expected_state) {
         'UR UB UL UF FL FR BR BL DF DR DB DL URF UBR ULB UFL DLF DFR DRB DBL'
-      )
+      }
+
+      it_should_behave_like 'a face turn'
     end
-  end
 
-  describe '#d' do
-    it 'turns the down face 90 degrees clockwise' do
-      subject.d
-
-      expect(subject.state).to eq(
+    describe '#d' do
+      let(:direction) { 'd' }
+      let(:expected_state) {
         'UF UR UB UL FL FR BR BL DL DF DR DB UFL URF UBR ULB DBL DLF DFR DRB'
-      )
+      }
+
+      it_should_behave_like 'a face turn'
     end
-  end
 
-  describe '#f' do
-    it 'turns the front face 90 degrees clockwise' do
-      subject.f
-
-      expect(subject.state).to eq(
+    describe '#f' do
+      let(:direction) { 'f' }
+      let(:expected_state) {
         'LF UR UB UL FD FU BR BL RF DR DB DL LFD LUF UBR ULB RDF RFU DRB DBL'
-      )
+      }
+
+      it_should_behave_like 'a face turn'
     end
-  end
 
-  describe '#b' do
-    it 'turns the back face 90 degrees clockwise' do
-      subject.b
-
-      expect(subject.state).to eq(
+    describe '#b' do
+      let(:direction) { 'b' }
+      let(:expected_state) {
         'UF UR RB UL FL FR BD BU DF DR LB DL UFL URF RBD RUB DLF DFR LDB LBU'
-      )
+      }
+
+      it_should_behave_like 'a face turn'
     end
-  end
 
-  describe '#m' do
-    it 'turns the middle slice 90 degrees clockwise (from L)' do
-      subject.m
-
-      expect(subject.state).to eq(
+    describe '#m' do
+      let(:direction) { 'm' }
+      let(:expected_state) {
         'BU UR BD UL FL FR BR BL FU DR FD DL UFL URF UBR ULB DLF DFR DRB DBL'
-      )
+      }
+
+      it_should_behave_like 'a face turn'
     end
   end
 end
