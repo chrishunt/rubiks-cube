@@ -44,7 +44,35 @@ module CubeSolver
       }
     end
 
+    module OLL
+      I = "M' U M' U M' U2 M U M U M U2"
+      H = "R' D' R D R' D' R D U' R' D' R D R' D' R D R' D' R D R' D' R D U"
 
+      Setup = {
+        edge: {
+          1  => "R B",
+          2  => "",
+          3  => "L' B'",
+          4  => "L2 B'",
+          5  => "R2 B",
+          6  => "B",
+          7  => "B'",
+          8  => "D2 B2",
+          9  => "D B2",
+          10 => "B2",
+          11 => "D' B2"
+        },
+
+        corner: {
+          1 => "",
+          2 => "R'",
+          3 => "B2 R2",
+          4 => "D2 R2",
+          5 => "D R2",
+          6 => "R2",
+          7 => "D' R2"
+        }
       }
+    end
   end
 end
