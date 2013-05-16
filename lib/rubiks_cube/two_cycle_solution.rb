@@ -4,7 +4,7 @@ module RubiksCube
     attr_reader :cube, :solution
 
     def initialize(cube)
-      @cube = cube
+      @cube = Cube.new(cube.state)
     end
 
     def state

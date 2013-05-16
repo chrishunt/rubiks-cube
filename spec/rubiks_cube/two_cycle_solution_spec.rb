@@ -14,6 +14,14 @@ describe RubiksCube::TwoCycleSolution do
       end
     end
 
+    it 'does not modify the original cube state' do
+      original_cube_state = cube.l.state
+
+      subject.solve!
+
+      expect(cube.state).to eq original_cube_state
+    end
+
     context 'when edges need to be swapped' do
       let(:state) {
         'UF UL UB UR FL FR BR BL DF DR DB DL UFL UBR URF ULB DLF DFR DRB DBL'
