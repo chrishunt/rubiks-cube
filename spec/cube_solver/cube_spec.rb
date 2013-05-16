@@ -105,6 +105,14 @@ describe CubeSolver::Cube do
       it 'still finds the correct location' do
         expect(subject.permuted_location_for cubie).to eq 0
       end
+
+      it 'does not rotate the cubie' do
+        original_state = cubie.state
+
+        subject.permuted_location_for cubie
+
+        expect(cubie.state).to eq original_state
+      end
     end
   end
 

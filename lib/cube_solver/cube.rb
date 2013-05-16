@@ -38,9 +38,11 @@ module CubeSolver
     end
 
     def permuted_location_for(cubie)
-      cubie.rotate! while (location = SOLVED_STATE.index cubie.state) == nil
-      location -= 12 if location >= 12
+      while (location = SOLVED_STATE.index cubie.state) == nil
+        cubie = cubie.rotate
+      end
 
+      location -= 12 if location >= 12
       location
     end
 
