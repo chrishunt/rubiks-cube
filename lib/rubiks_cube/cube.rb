@@ -1,4 +1,4 @@
-module CubeSolver
+module RubiksCube
   # Standard 3x3x3 Rubik's Cube with normal turn operations (l, r, u, d, f, b)
   class Cube
     SOLVED_STATE = %w(
@@ -140,7 +140,7 @@ module CubeSolver
     private
 
     def build_state_from_string(state)
-      state.split.map { |state| CubeSolver::Cubie.new state }
+      state.split.map { |state| RubiksCube::Cubie.new state }
     end
 
     def cubie_permuted?(type, cubie)
@@ -197,7 +197,7 @@ module CubeSolver
     end
 
     def reverse(algorithm)
-      CubeSolver::Algorithms.reverse algorithm
+      RubiksCube::Algorithms.reverse algorithm
     end
   end
 end

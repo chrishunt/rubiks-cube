@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CubeSolver::Cubie do
+describe RubiksCube::Cubie do
   subject { described_class.new state }
 
   let(:state) { 'UF' }

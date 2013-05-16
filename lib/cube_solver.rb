@@ -1,6 +1,0 @@
-require_relative 'cube_solver/cube'
-require_relative 'cube_solver/cubie'
-require_relative 'cube_solver/algorithms'
-require_relative 'cube_solver/edge_cubie'
-require_relative 'cube_solver/corner_cubie'
-require_relative 'cube_solver/two_cycle_solver'

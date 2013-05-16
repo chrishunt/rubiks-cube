@@ -1,4 +1,4 @@
-module CubeSolver
+module RubiksCube
   # Generic cubie piece, either edge cubie or corner cubie
   class Cubie
     def initialize(state)

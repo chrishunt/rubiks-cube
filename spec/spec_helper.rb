@@ -1,1 +1,1 @@
-require 'cube_solver'
+require 'rubiks_cube'

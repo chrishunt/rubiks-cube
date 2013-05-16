@@ -1,0 +1,6 @@
+require_relative 'rubiks_cube/cube'
+require_relative 'rubiks_cube/cubie'
+require_relative 'rubiks_cube/algorithms'
+require_relative 'rubiks_cube/edge_cubie'
+require_relative 'rubiks_cube/corner_cubie'
+require_relative 'rubiks_cube/two_cycle_solver'

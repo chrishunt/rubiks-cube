@@ -1,4 +1,4 @@
-module CubeSolver
+module RubiksCube
   EdgeCubie = Struct.new(:state) do
     def rotate!
       state.reverse!

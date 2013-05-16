@@ -1,4 +1,4 @@
-module CubeSolver
+module RubiksCube
   CornerCubie = Struct.new(:state) do
     def rotate!
       u, r, f = state.split ''

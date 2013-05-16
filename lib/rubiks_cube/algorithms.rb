@@ -1,4 +1,4 @@
-module CubeSolver
+module RubiksCube
   module Algorithms
     def self.reverse(algorithm)
       algorithm.split.map do |move|

@@ -1,4 +1,4 @@
-module CubeSolver
+module RubiksCube
   # Very inefficient two-cycle solving algorithm, useful for blindfold
   class TwoCycleSolver
     attr_reader :cube, :solution
@@ -65,9 +65,9 @@ module CubeSolver
     end
 
     def swap(type, location)
-      setup = CubeSolver::Algorithms::PLL::Setup.fetch(type).fetch(location)
+      setup = RubiksCube::Algorithms::PLL::Setup.fetch(type).fetch(location)
       swap  = send("#{type}_swap_algorithm")
-      undo  = CubeSolver::Algorithms.reverse(setup)
+      undo  = RubiksCube::Algorithms.reverse(setup)
 
       [setup, swap, undo].map do |algorithm|
         cube.perform! algorithm
@@ -76,12 +76,12 @@ module CubeSolver
     end
 
     def rotate(type)
-      setup = CubeSolver::Algorithms::OLL::Setup.fetch(type).fetch(
+      setup = RubiksCube::Algorithms::OLL::Setup.fetch(type).fetch(
         next_unoriented_location_for(type)
       )
 
       rotate = send("#{type}_rotate_algorithm")
-      undo   = CubeSolver::Algorithms.reverse(setup)
+      undo   = RubiksCube::Algorithms.reverse(setup)
 
       [setup, rotate, undo].map do |algorithm|
         cube.perform! algorithm
@@ -90,19 +90,19 @@ module CubeSolver
     end
 
     def edge_swap_algorithm
-      CubeSolver::Algorithms::PLL::T
+      RubiksCube::Algorithms::PLL::T
     end
 
     def corner_swap_algorithm
-      CubeSolver::Algorithms::PLL::Y
+      RubiksCube::Algorithms::PLL::Y
     end
 
     def edge_rotate_algorithm
-      CubeSolver::Algorithms::OLL::I
+      RubiksCube::Algorithms::OLL::I
     end
 
     def corner_rotate_algorithm
-      CubeSolver::Algorithms::OLL::H
+      RubiksCube::Algorithms::OLL::H
     end
 
     def permutation_buffer_edge

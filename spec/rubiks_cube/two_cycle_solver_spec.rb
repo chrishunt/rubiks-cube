@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe CubeSolver::TwoCycleSolver do
+describe RubiksCube::TwoCycleSolver do
   subject { described_class.new cube }
 
-  let(:cube)  { CubeSolver::Cube.new state }
+  let(:cube)  { RubiksCube::Cube.new state }
   let(:state) { nil }
 
   describe '#solve!' do
@@ -31,13 +31,13 @@ describe CubeSolver::TwoCycleSolver do
     end
 
     context 'when two edges have incorrect orientation' do
-      before { cube.perform! CubeSolver::Algorithms::OLL::I }
+      before { cube.perform! RubiksCube::Algorithms::OLL::I }
 
       it_should_behave_like 'a cube that can be solved'
     end
 
     context 'when two corners have incorrect orientation' do
-      before { cube.perform! CubeSolver::Algorithms::OLL::H }
+      before { cube.perform! RubiksCube::Algorithms::OLL::H }
 
       it_should_behave_like 'a cube that can be solved'
     end
@@ -59,9 +59,9 @@ describe CubeSolver::TwoCycleSolver do
     describe '#solution' do
       before do
         cube.perform!([
-          CubeSolver::Algorithms::PLL::T,
-          CubeSolver::Algorithms::PLL::Y,
-          CubeSolver::Algorithms::OLL::I,
+          RubiksCube::Algorithms::PLL::T,
+          RubiksCube::Algorithms::PLL::Y,
+          RubiksCube::Algorithms::OLL::I,
         ].join ' ')
 
         subject.solve!
@@ -69,12 +69,12 @@ describe CubeSolver::TwoCycleSolver do
 
       it 'returns the setup, algorithm, and undo moves' do
         expect(subject.solution).to eq([
-          "", CubeSolver::Algorithms::PLL::T, "",
-          "M2 D L2", CubeSolver::Algorithms::PLL::T, "L2 D' M2",
-          "R2 D' R2", CubeSolver::Algorithms::PLL::Y, "R2 D R2",
-          "", CubeSolver::Algorithms::PLL::Y, "",
-          "R B", CubeSolver::Algorithms::OLL::I, "B' R'",
-          "", CubeSolver::Algorithms::OLL::I, ""
+          "", RubiksCube::Algorithms::PLL::T, "",
+          "M2 D L2", RubiksCube::Algorithms::PLL::T, "L2 D' M2",
+          "R2 D' R2", RubiksCube::Algorithms::PLL::Y, "R2 D R2",
+          "", RubiksCube::Algorithms::PLL::Y, "",
+          "R B", RubiksCube::Algorithms::OLL::I, "B' R'",
+          "", RubiksCube::Algorithms::OLL::I, ""
         ])
       end
     end

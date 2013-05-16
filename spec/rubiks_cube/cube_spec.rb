@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CubeSolver::Cube do
+describe RubiksCube::Cube do
   subject { described_class.new state }
 
   let(:state) { nil }
@@ -18,7 +18,7 @@ describe CubeSolver::Cube do
       let(:state) { nil }
 
       it 'is initialized with the solved state' do
-        expect(subject.state).to eq CubeSolver::Cube::SOLVED_STATE.join ' '
+        expect(subject.state).to eq RubiksCube::Cube::SOLVED_STATE.join ' '
       end
     end
   end
@@ -36,7 +36,7 @@ describe CubeSolver::Cube do
   describe '#edges' do
     it 'returns all the edges' do
       expect(subject.edges).to eq(
-        subject.state.split[0..11].map { |cubie| CubeSolver::Cubie.new cubie }
+        subject.state.split[0..11].map { |cubie| RubiksCube::Cubie.new cubie }
       )
     end
   end
@@ -44,7 +44,7 @@ describe CubeSolver::Cube do
   describe '#corners' do
     it 'returns all the corners' do
       expect(subject.corners).to eq(
-        subject.state.split[12..-1].map { |cubie| CubeSolver::Cubie.new cubie }
+        subject.state.split[12..-1].map { |cubie| RubiksCube::Cubie.new cubie }
       )
     end
   end
@@ -122,12 +122,12 @@ describe CubeSolver::Cube do
   end
 
   describe '#permuted_location_for' do
-    CubeSolver::Cube::SOLVED_STATE.each_with_index do |cubie, location|
+    RubiksCube::Cube::SOLVED_STATE.each_with_index do |cubie, location|
       it "returns the correct location for the '#{cubie}' cubie" do
         # Both corner and edge index begins at zero
         location -= 12 if location >= 12
 
-        cubie = CubeSolver::Cubie.new cubie
+        cubie = RubiksCube::Cubie.new cubie
 
         expect(subject.permuted_location_for cubie).to eq location
       end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CubeSolver::Algorithms do
+describe RubiksCube::Algorithms do
   subject { described_class }
 
   describe '.reverse' do
