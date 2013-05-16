@@ -187,14 +187,14 @@ describe RubiksCube::Cube do
     end
   end
 
-  describe '#has_edges_permuted?' do
+  describe '#has_correct_edge_permutation?' do
     context 'when the edges are permuted, but corners are not' do
       let(:state) {
         'UF UR UB UL FL FR BR BL DF DR DB DL ULB UBR URF UFL DBL DRB DFR DLF'
       }
 
       it 'returns true' do
-        expect(subject).to have_edges_permuted
+        expect(subject).to have_correct_edge_permutation
       end
     end
 
@@ -204,19 +204,19 @@ describe RubiksCube::Cube do
       }
 
       it 'returns false' do
-        expect(subject).to_not have_edges_permuted
+        expect(subject).to_not have_correct_edge_permutation
       end
     end
   end
 
-  describe '#has_corners_permuted?' do
+  describe '#has_correct_corner_permutation?' do
     context 'when the corners are permuted, but the edges are not' do
       let(:state) {
         'UL UF UB UR FL FR BR BL DF DR DB DL UFL URF UBR ULB DLF DFR DRB DBL'
       }
 
       it 'returns true' do
-        expect(subject).to have_corners_permuted
+        expect(subject).to have_correct_corner_permutation
       end
     end
 
@@ -226,19 +226,19 @@ describe RubiksCube::Cube do
       }
 
       it 'returns false' do
-        expect(subject).to_not have_corners_permuted
+        expect(subject).to_not have_correct_corner_permutation
       end
     end
   end
 
-  describe '#has_edges_oriented?' do
+  describe '#has_correct_edge_orientation?' do
     context 'when the edges are oriented, but the corners are not' do
       let(:state) {
         'UF UR UB UL FL FR BR BL DF DR DB DL LUF RFU UBR ULB DLF DFR DRB DBL'
       }
 
       it 'returns true' do
-        expect(subject).to have_edges_oriented
+        expect(subject).to have_correct_edge_orientation
       end
     end
 
@@ -248,19 +248,19 @@ describe RubiksCube::Cube do
       }
 
       it 'returns false' do
-        expect(subject).to_not have_edges_oriented
+        expect(subject).to_not have_correct_edge_orientation
       end
     end
   end
 
-  describe '#has_corners_oriented?' do
+  describe '#has_correct_corner_orientation?' do
     context 'when the corners are oriented, but the edges are not' do
       let(:state) {
         'FU UR BU UL FL FR BR BL DF DR DB DL UFL URF UBR ULB DLF DFR DRB DBL'
       }
 
       it 'returns true' do
-        expect(subject).to have_corners_oriented
+        expect(subject).to have_correct_corner_orientation
       end
     end
 
@@ -270,7 +270,7 @@ describe RubiksCube::Cube do
       }
 
       it 'returns false' do
-        expect(subject).to_not have_corners_oriented
+        expect(subject).to_not have_correct_corner_orientation
       end
     end
   end

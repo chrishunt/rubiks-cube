@@ -39,19 +39,19 @@ module RubiksCube
       cubie_permuted? :corners, corner
     end
 
-    def has_edges_permuted?
+    def has_correct_edge_permutation?
       unpermuted_edge_locations.empty?
     end
 
-    def has_corners_permuted?
+    def has_correct_corner_permutation?
       unpermuted_corner_locations.empty?
     end
 
-    def has_edges_oriented?
+    def has_correct_edge_orientation?
       unoriented_edge_locations.empty?
     end
 
-    def has_corners_oriented?
+    def has_correct_corner_orientation?
       unoriented_corner_locations.empty?
     end
 
