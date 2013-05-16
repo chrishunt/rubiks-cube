@@ -32,34 +32,34 @@ module CubeSolver
       end
     end
 
-    def permutation_solution_for(cubie)
+    def permutation_solution_for(cubie_type)
       [].tap do |solution|
-        until cube.public_send("has_#{cubie}s_permuted?")
-          solution << [swap(cubie.to_sym, next_location_for(cubie))]
+        until cube.public_send("has_#{cubie_type}s_permuted?")
+          solution << [swap(cubie_type.to_sym, next_location_for(cubie_type))]
         end
       end
     end
 
-    def orientation_solution_for(cubie)
+    def orientation_solution_for(cubie_type)
       [].tap do |solution|
-        until cube.public_send("has_#{cubie}s_oriented?")
-          solution << [rotate(cubie.to_sym)]
+        until cube.public_send("has_#{cubie_type}s_oriented?")
+          solution << [rotate(cubie_type.to_sym)]
         end
       end
     end
 
-    def next_location_for(cubie)
-      buffer_cubie = send("permutation_buffer_#{cubie}")
+    def next_location_for(cubie_type)
+      buffer_cubie = send("permutation_buffer_#{cubie_type}")
 
-      if cube.public_send("#{cubie}_permuted?", buffer_cubie)
-        cube.public_send("unpermuted_#{cubie}_locations").first
+      if cube.public_send("#{cubie_type}_permuted?", buffer_cubie)
+        cube.public_send("unpermuted_#{cubie_type}_locations").first
       else
         cube.permuted_location_for buffer_cubie
       end
     end
 
-    def next_unoriented_location_for(cubie)
-      cube.public_send("unoriented_#{cubie}_locations").tap do |locations|
+    def next_unoriented_location_for(cubie_type)
+      cube.public_send("unoriented_#{cubie_type}_locations").tap do |locations|
         locations.delete(0)
       end.first
     end
