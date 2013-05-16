@@ -28,7 +28,7 @@ module CubeSolver
 
     def solution_for(cubie)
       [].tap do |solution|
-        until cube.public_send("has_#{cubie}s_solved?")
+        until cube.public_send("has_#{cubie}s_permuted?")
           solution << swap("#{cubie}".to_sym, next_location_for(cubie)) << "\n"
         end
       end
@@ -37,10 +37,10 @@ module CubeSolver
     def next_location_for(cubie)
       buffer_cubie = send("buffer_#{cubie}")
 
-      if cube.public_send("#{cubie}_solved?", buffer_cubie)
-        cube.public_send("unsolved_#{cubie}_locations").first
+      if cube.public_send("#{cubie}_permuted?", buffer_cubie)
+        cube.public_send("unpermuted_#{cubie}_locations").first
       else
-        cube.solved_location_for buffer_cubie
+        cube.permuted_location_for buffer_cubie
       end
     end
 

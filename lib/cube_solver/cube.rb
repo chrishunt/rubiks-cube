@@ -29,15 +29,15 @@ module CubeSolver
       @state[12..-1]
     end
 
-    def unsolved_edge_locations
-      unsolved_locations_for :edges
+    def unpermuted_edge_locations
+      unpermuted_locations_for :edges
     end
 
-    def unsolved_corner_locations
-      unsolved_locations_for :corners
+    def unpermuted_corner_locations
+      unpermuted_locations_for :corners
     end
 
-    def solved_location_for(cubie)
+    def permuted_location_for(cubie)
       cubie.rotate! while (location = SOLVED_STATE.index cubie.state) == nil
       location -= 12 if location >= 12
 
@@ -48,20 +48,20 @@ module CubeSolver
       state == SOLVED_STATE.join(' ')
     end
 
-    def edge_solved?(edge)
-      cubie_solved? :edges, edge
+    def edge_permuted?(edge)
+      cubie_permuted? :edges, edge
     end
 
-    def corner_solved?(corner)
-      cubie_solved? :corners, corner
+    def corner_permuted?(corner)
+      cubie_permuted? :corners, corner
     end
 
-    def has_edges_solved?
-      unsolved_edge_locations.empty?
+    def has_edges_permuted?
+      unpermuted_edge_locations.empty?
     end
 
-    def has_corners_solved?
-      unsolved_corner_locations.empty?
+    def has_corners_permuted?
+      unpermuted_corner_locations.empty?
     end
 
     def perform!(algorithm)
@@ -121,13 +121,13 @@ module CubeSolver
       state.split.map { |state| CubeSolver::Cubie.new state }
     end
 
-    def cubie_solved?(type, cubie)
-      send(type).index(cubie) == solved_location_for(cubie)
+    def cubie_permuted?(type, cubie)
+      send(type).index(cubie) == permuted_location_for(cubie)
     end
 
-    def unsolved_locations_for(type)
+    def unpermuted_locations_for(type)
       send(type).each_with_index.map do |cubie, location|
-        location == solved_location_for(cubie) ? nil : location
+        location == permuted_location_for(cubie) ? nil : location
       end.compact
     end
 

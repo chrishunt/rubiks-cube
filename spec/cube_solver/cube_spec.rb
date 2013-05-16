@@ -49,43 +49,43 @@ describe CubeSolver::Cube do
     end
   end
 
-  describe '#unsolved_edge_locations' do
-    context 'with unsolved edges' do
+  describe '#unpermuted_edge_locations' do
+    context 'with unpermuted edges' do
       let(:state) {
         'UF UL UB UR FL FR BR BL DF DL DB DR UFL URF UBR ULB DLF DFR DRB DBL'
       }
 
-      it 'returns the location of all unsolved edges' do
-        expect(subject.unsolved_edge_locations).to eq [1, 3, 9, 11]
+      it 'returns the location of all unpermuted edges' do
+        expect(subject.unpermuted_edge_locations).to eq [1, 3, 9, 11]
       end
     end
 
-    context 'with solved edges' do
+    context 'with permuted edges' do
       it 'returns an empty array' do
-        expect(subject.unsolved_edge_locations).to eq []
+        expect(subject.unpermuted_edge_locations).to eq []
       end
     end
   end
 
-  describe '#unsolved_corner_locations' do
-    context 'with unsolved corners' do
+  describe '#unpermuted_corner_locations' do
+    context 'with unpermuted corners' do
       let(:state){
         'UF UR UB UL FL FR BR BL DF DR DB DL ULB UBR URF UFL DLF DFR DRB DBL'
       }
 
-      it 'returns the locations of all unsolved corners' do
-        expect(subject.unsolved_corner_locations).to eq [0, 1, 2, 3]
+      it 'returns the locations of all unpermuted corners' do
+        expect(subject.unpermuted_corner_locations).to eq [0, 1, 2, 3]
       end
     end
 
-    context 'with solved corners' do
+    context 'with permuted corners' do
       it 'returns an empty array' do
-        expect(subject.unsolved_corner_locations).to eq []
+        expect(subject.unpermuted_corner_locations).to eq []
       end
     end
   end
 
-  describe '#solved_location_for' do
+  describe '#permuted_location_for' do
     CubeSolver::Cube::SOLVED_STATE.each_with_index do |cubie, location|
       it "returns the correct location for the '#{cubie}' cubie" do
         # Both corner and edge index begins at zero
@@ -93,7 +93,7 @@ describe CubeSolver::Cube do
 
         cubie = CubeSolver::Cubie.new cubie
 
-        expect(subject.solved_location_for cubie).to eq location
+        expect(subject.permuted_location_for cubie).to eq location
       end
     end
 
@@ -103,7 +103,7 @@ describe CubeSolver::Cube do
       before { cubie.rotate! }
 
       it 'still finds the correct location' do
-        expect(subject.solved_location_for cubie).to eq 0
+        expect(subject.permuted_location_for cubie).to eq 0
       end
     end
   end
@@ -119,70 +119,70 @@ describe CubeSolver::Cube do
     end
   end
 
-  describe '#edge_solved?' do
-    it 'returns true when the cubie is solved' do
+  describe '#edge_permuted?' do
+    it 'returns true when the cubie is permuted' do
       subject.u
 
-      solved_edge = subject.edges[4]
-      unsolved_edge = subject.edges[0]
+      permuted_edge = subject.edges[4]
+      unpermuted_edge = subject.edges[0]
 
-      expect(subject.edge_solved? unsolved_edge).to be_false
-      expect(subject.edge_solved? solved_edge).to be_true
+      expect(subject.edge_permuted? unpermuted_edge).to be_false
+      expect(subject.edge_permuted? permuted_edge).to be_true
     end
   end
 
-  describe '#corner_solved?' do
-    it 'returns true when the cubie is solved' do
+  describe '#corner_permuted?' do
+    it 'returns true when the cubie is permuted' do
       subject.f
 
-      solved_corner = subject.corners[2]
-      unsolved_corner = subject.corners[1]
+      permuted_corner = subject.corners[2]
+      unpermuted_corner = subject.corners[1]
 
-      expect(subject.corner_solved? unsolved_corner).to be_false
-      expect(subject.corner_solved? solved_corner).to be_true
+      expect(subject.corner_permuted? unpermuted_corner).to be_false
+      expect(subject.corner_permuted? permuted_corner).to be_true
     end
   end
 
-  describe '#has_edges_solved?' do
-    context 'when the edges are solved, but corners are not' do
+  describe '#has_edges_permuted?' do
+    context 'when the edges are permuted, but corners are not' do
       let(:state) {
         'UF UR UB UL FL FR BR BL DF DR DB DL ULB UBR URF UFL DBL DRB DFR DLF'
       }
 
       it 'returns true' do
-        expect(subject).to have_edges_solved
+        expect(subject).to have_edges_permuted
       end
     end
 
-    context 'when the edges are not solved, but corners are' do
+    context 'when the edges are not permuted, but corners are' do
       let(:state) {
         'UL UF UB UR FL FR BR BL DF DR DB DL UFL URF UBR ULB DLF DFR DRB DBL'
       }
 
       it 'returns false' do
-        expect(subject).to_not have_edges_solved
+        expect(subject).to_not have_edges_permuted
       end
     end
   end
 
-  describe '#has_corners_solved?' do
-    context 'when the corners are solved, but the edges are not' do
+  describe '#has_corners_permuted?' do
+    context 'when the corners are permuted, but the edges are not' do
       let(:state) {
         'UL UF UB UR FL FR BR BL DF DR DB DL UFL URF UBR ULB DLF DFR DRB DBL'
       }
 
       it 'returns true' do
-        expect(subject).to have_corners_solved
+        expect(subject).to have_corners_permuted
       end
     end
 
-    context 'when the corners are not solved, but the edges are solved' do
+    context 'when the corners are not permuted, but the edges are permuted' do
       let(:state) {
         'UF UR UB UL FL FR BR BL DF DR DB DL ULB UBR URF UFL DBL DRB DFR DLF'
       }
 
       it 'returns false' do
-        expect(subject).to_not have_corners_solved
+        expect(subject).to_not have_corners_permuted
       end
     end
   end
