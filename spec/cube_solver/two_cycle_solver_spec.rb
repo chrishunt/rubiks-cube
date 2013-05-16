@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CubeSolver::TwoCycleSolution do
+describe CubeSolver::TwoCycleSolver do
   subject { described_class.new state }
 
   let(:state) { nil }
