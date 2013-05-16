@@ -1,6 +1,3 @@
-require 'cube_solver/cubie'
-require 'cube_solver/algorithms'
-
 module CubeSolver
   # Standard 3x3x3 Rubik's Cube with normal turn operations (l, r, u, d, f, b)
   class Cube

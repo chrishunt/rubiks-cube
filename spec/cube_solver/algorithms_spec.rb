@@ -1,4 +1,4 @@
-require 'cube_solver/algorithms'
+require 'spec_helper'
 
 describe CubeSolver::Algorithms do
   subject { described_class }

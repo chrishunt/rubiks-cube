@@ -1,6 +1,3 @@
-require 'cube_solver/cube'
-require 'cube_solver/algorithms'
-
 module CubeSolver
   # Very inefficient two-cycle solving algorithm, useful for blindfold
   class TwoCycleSolution

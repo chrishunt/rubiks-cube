@@ -1,4 +1,4 @@
-require 'cube_solver/two_cycle_solution'
+require 'spec_helper'
 
 describe CubeSolver::TwoCycleSolution do
   subject { described_class.new state }

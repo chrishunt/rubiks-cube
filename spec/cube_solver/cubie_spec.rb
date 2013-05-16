@@ -1,4 +1,4 @@
-require 'cube_solver/cubie'
+require 'spec_helper'
 
 describe CubeSolver::Cubie do
   subject { described_class.new state }
