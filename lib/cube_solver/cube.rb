@@ -133,7 +133,7 @@ module CubeSolver
 
     def unpermuted_locations_for(type)
       send(type).each_with_index.map do |cubie, location|
-        location == permuted_location_for(cubie) ? nil : location
+        location unless location == permuted_location_for(cubie)
       end.compact
     end
 
