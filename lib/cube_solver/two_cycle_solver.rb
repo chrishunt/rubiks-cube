@@ -17,25 +17,46 @@ module CubeSolver
 
     def solve!
       @solution ||= begin
-        solution =  solution_for(:edge)
-        solution << solution_for(:corner)
-
+        solution =  permutation_solution
+        solution << orientation_solution
         solution.flatten.compact.join(' ').strip
       end
     end
 
     private
 
-    def solution_for(cubie)
+    def permutation_solution
+      [].tap do |solution|
+        solution << permutation_solution_for(:edge)
+        solution << permutation_solution_for(:corner)
+      end
+    end
+
+    def orientation_solution
+      [].tap do |solution|
+        solution << orientation_solution_for(:edge)
+        solution << orientation_solution_for(:corner)
+      end
+    end
+
+    def permutation_solution_for(cubie)
       [].tap do |solution|
         until cube.public_send("has_#{cubie}s_permuted?")
-          solution << swap("#{cubie}".to_sym, next_location_for(cubie)) << "\n"
+          solution << swap(cubie.to_sym, next_location_for(cubie)) << "\n"
+        end
+      end
+    end
+
+    def orientation_solution_for(cubie)
+      [].tap do |solution|
+        until cube.public_send("has_#{cubie}s_oriented?")
+          solution << rotate(cubie.to_sym) << "\n"
         end
       end
     end
 
     def next_location_for(cubie)
-      buffer_cubie = send("buffer_#{cubie}")
+      buffer_cubie = send("permutation_buffer_#{cubie}")
 
       if cube.public_send("#{cubie}_permuted?", buffer_cubie)
         cube.public_send("unpermuted_#{cubie}_locations").first
@@ -44,12 +65,31 @@ module CubeSolver
       end
     end
 
+    def next_unoriented_location_for(cubie)
+      cube.public_send("unoriented_#{cubie}_locations").tap do |locations|
+        locations.delete(0)
+      end.first
+    end
+
     def swap(type, location)
       setup = CubeSolver::Algorithms::PLL::Setup.fetch(type).fetch(location)
       swap  = send("#{type}_swap_algorithm")
       undo  = CubeSolver::Algorithms.reverse(setup)
 
       %w(setup swap undo).map { |operation| format operation, eval(operation) }
+    end
+
+    def rotate(type)
+      setup = CubeSolver::Algorithms::OLL::Setup.fetch(type).fetch(
+        next_unoriented_location_for(type)
+      )
+
+      rotate = send("#{type}_rotate_algorithm")
+      undo   = CubeSolver::Algorithms.reverse(setup)
+
+      %w(setup rotate undo).map do |operation|
+        format operation, eval(operation)
+      end
     end
 
     def format(operation, algorithm)
@@ -64,11 +104,19 @@ module CubeSolver
       CubeSolver::Algorithms::PLL::Y
     end
 
-    def buffer_edge
+    def edge_rotate_algorithm
+      CubeSolver::Algorithms::OLL::I
+    end
+
+    def corner_rotate_algorithm
+      CubeSolver::Algorithms::OLL::H
+    end
+
+    def permutation_buffer_edge
       cube.edges[1]
     end
 
-    def buffer_corner
+    def permutation_buffer_corner
       cube.corners[0]
     end
   end
