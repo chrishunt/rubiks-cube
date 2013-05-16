@@ -20,14 +20,6 @@ describe CubeSolver::TwoCycleSolver do
       }
 
       it_should_behave_like 'a cube that can be solved'
-
-      it 'returns the solution and saves it for later' do
-        expected_solution = "swap\t(#{CubeSolver::Algorithms::PLL::T})"
-
-        expect(subject.solution).to be_nil
-        expect(subject.solve!).to eq expected_solution
-        expect(subject.solution).to eq expected_solution
-      end
     end
 
     context 'when corners need to be swapped' do
@@ -61,6 +53,29 @@ describe CubeSolver::TwoCycleSolver do
         before { cube.perform! scramble }
 
         it_should_behave_like 'a cube that can be solved'
+      end
+    end
+
+    describe '#solution' do
+      before do
+        cube.perform!([
+          CubeSolver::Algorithms::PLL::T,
+          CubeSolver::Algorithms::PLL::Y,
+          CubeSolver::Algorithms::OLL::I,
+        ].join ' ')
+
+        subject.solve!
+      end
+
+      it 'returns the setup, algorithm, and undo moves' do
+        expect(subject.solution).to eq([
+          "", CubeSolver::Algorithms::PLL::T, "",
+          "M2 D L2", CubeSolver::Algorithms::PLL::T, "L2 D' M2",
+          "R2 D' R2", CubeSolver::Algorithms::PLL::Y, "R2 D R2",
+          "", CubeSolver::Algorithms::PLL::Y, "",
+          "R B", CubeSolver::Algorithms::OLL::I, "B' R'",
+          "", CubeSolver::Algorithms::OLL::I, ""
+        ])
       end
     end
   end

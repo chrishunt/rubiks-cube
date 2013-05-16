@@ -19,30 +19,24 @@ module CubeSolver
       @solution ||= begin
         solution =  permutation_solution
         solution << orientation_solution
-        solution.flatten.compact.join(' ').strip
+        solution.flatten
       end
     end
 
     private
 
     def permutation_solution
-      [].tap do |solution|
-        solution << permutation_solution_for(:edge)
-        solution << permutation_solution_for(:corner)
-      end
+      [:edge, :corner].map { |type| permutation_solution_for type }
     end
 
     def orientation_solution
-      [].tap do |solution|
-        solution << orientation_solution_for(:edge)
-        solution << orientation_solution_for(:corner)
-      end
+      [:edge, :corner].map { |type| orientation_solution_for type }
     end
 
     def permutation_solution_for(cubie)
       [].tap do |solution|
         until cube.public_send("has_#{cubie}s_permuted?")
-          solution << swap(cubie.to_sym, next_location_for(cubie)) << "\n"
+          solution << [swap(cubie.to_sym, next_location_for(cubie))]
         end
       end
     end
@@ -50,7 +44,7 @@ module CubeSolver
     def orientation_solution_for(cubie)
       [].tap do |solution|
         until cube.public_send("has_#{cubie}s_oriented?")
-          solution << rotate(cubie.to_sym) << "\n"
+          solution << [rotate(cubie.to_sym)]
         end
       end
     end
@@ -76,7 +70,10 @@ module CubeSolver
       swap  = send("#{type}_swap_algorithm")
       undo  = CubeSolver::Algorithms.reverse(setup)
 
-      %w(setup swap undo).map { |operation| format operation, eval(operation) }
+      [setup, swap, undo].map do |algorithm|
+        cube.perform! algorithm
+        algorithm
+      end
     end
 
     def rotate(type)
@@ -87,13 +84,10 @@ module CubeSolver
       rotate = send("#{type}_rotate_algorithm")
       undo   = CubeSolver::Algorithms.reverse(setup)
 
-      %w(setup rotate undo).map do |operation|
-        format operation, eval(operation)
+      [setup, rotate, undo].map do |algorithm|
+        cube.perform! algorithm
+        algorithm
       end
-    end
-
-    def format(operation, algorithm)
-      "#{operation}\t(#{cube.perform! algorithm})\n" unless algorithm.empty?
     end
 
     def edge_swap_algorithm
