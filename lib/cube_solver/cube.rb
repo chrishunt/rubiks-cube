@@ -1,8 +1,6 @@
 module CubeSolver
   # Standard 3x3x3 Rubik's Cube with normal turn operations (l, r, u, d, f, b)
   class Cube
-    attr_reader :state
-
     SOLVED_STATE = %w(
       UF UR UB UL FL FR BR BL DF DR DB DL UFL URF UBR ULB DLF DFR DRB DBL
     )
