@@ -85,6 +85,42 @@ describe CubeSolver::Cube do
     end
   end
 
+  describe '#unoriented_edge_locations' do
+    context 'with edges that are not oriented' do
+      let(:state) {
+        'FU UR BU UL FL RF RB LB FD DR DB DL UFL URF UBR ULB DLF DFR DRB DBL'
+      }
+
+      it 'returns the locations of all unoriented edges' do
+        expect(subject.unoriented_edge_locations).to eq [0, 2, 5, 6, 7, 8]
+      end
+    end
+
+    context 'with oriented edges' do
+      it 'returns an empty array' do
+        expect(subject.unoriented_edge_locations).to eq []
+      end
+    end
+  end
+
+  describe '#unoriented_corner_locations' do
+    context 'with corners that are not oriented' do
+      let(:state) {
+        'UF UR UB UL FL FR BR BL DF DR DB DL FLU FUR UBR ULB DLF DFR DRB DBL'
+      }
+
+      it 'returns the locations of all unoriented corners' do
+        expect(subject.unoriented_corner_locations).to eq [0, 1]
+      end
+    end
+
+    context 'with oriented corners' do
+      it 'returns an empty array' do
+        expect(subject.unoriented_corner_locations).to eq []
+      end
+    end
+  end
+
   describe '#permuted_location_for' do
     CubeSolver::Cube::SOLVED_STATE.each_with_index do |cubie, location|
       it "returns the correct location for the '#{cubie}' cubie" do
@@ -191,6 +227,50 @@ describe CubeSolver::Cube do
 
       it 'returns false' do
         expect(subject).to_not have_corners_permuted
+      end
+    end
+  end
+
+  describe '#has_edges_oriented?' do
+    context 'when the edges are oriented, but the corners are not' do
+      let(:state) {
+        'UF UR UB UL FL FR BR BL DF DR DB DL LUF RFU UBR ULB DLF DFR DRB DBL'
+      }
+
+      it 'returns true' do
+        expect(subject).to have_edges_oriented
+      end
+    end
+
+    context 'when the edges are not oriented, but the corners are' do
+      let(:state) {
+        'FU UR BU UL FL FR BR BL DF DR DB DL UFL URF UBR ULB DLF DFR DRB DBL'
+      }
+
+      it 'returns false' do
+        expect(subject).to_not have_edges_oriented
+      end
+    end
+  end
+
+  describe '#has_corners_oriented?' do
+    context 'when the corners are oriented, but the edges are not' do
+      let(:state) {
+        'FU UR BU UL FL FR BR BL DF DR DB DL UFL URF UBR ULB DLF DFR DRB DBL'
+      }
+
+      it 'returns true' do
+        expect(subject).to have_corners_oriented
+      end
+    end
+
+    context 'when the corners are not oriented, but the edges are' do
+      let(:state) {
+        'UF UR UB UL FL FR BR BL DF DR DB DL LUF RFU UBR ULB DLF DFR DRB DBL'
+      }
+
+      it 'returns false' do
+        expect(subject).to_not have_corners_oriented
       end
     end
   end

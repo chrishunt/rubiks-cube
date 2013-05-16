@@ -47,12 +47,28 @@ module CubeSolver
       unpermuted_corner_locations.empty?
     end
 
+    def has_edges_oriented?
+      unoriented_edge_locations.empty?
+    end
+
+    def has_corners_oriented?
+      unoriented_corner_locations.empty?
+    end
+
     def unpermuted_edge_locations
       unpermuted_locations_for :edges
     end
 
     def unpermuted_corner_locations
       unpermuted_locations_for :corners
+    end
+
+    def unoriented_edge_locations
+      unoriented_locations_for :edges
+    end
+
+    def unoriented_corner_locations
+      unoriented_locations_for :corners
     end
 
     def permuted_location_for(cubie)
@@ -134,6 +150,20 @@ module CubeSolver
     def unpermuted_locations_for(type)
       send(type).each_with_index.map do |cubie, location|
         location unless location == permuted_location_for(cubie)
+      end.compact
+    end
+
+    def unoriented_locations_for(type)
+      send(type).each_with_index.map do |cubie, location|
+        oriented_state = SOLVED_STATE.fetch(
+          if type == :corners
+            location + 12
+          else
+            location
+          end
+        )
+
+        location unless cubie.state == oriented_state
       end.compact
     end
 
