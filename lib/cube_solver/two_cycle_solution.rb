@@ -3,7 +3,7 @@ require 'cube_solver/algorithms'
 
 module CubeSolver
   # Very inefficient two-cycle solving algorithm, useful for blindfold
-  class TwoCycle
+  class TwoCycleSolution
     attr_reader :cube, :solution
 
     def initialize(state)

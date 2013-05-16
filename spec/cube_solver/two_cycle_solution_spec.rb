@@ -1,6 +1,6 @@
-require 'cube_solver/two_cycle'
+require 'cube_solver/two_cycle_solution'
 
-describe CubeSolver::TwoCycle do
+describe CubeSolver::TwoCycleSolution do
   subject { described_class.new state }
 
   let(:state) { nil }
