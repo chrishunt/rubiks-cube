@@ -19,7 +19,7 @@ module CubeSolver
     end
 
     def rotate
-      Cubie.new(state).rotate!
+      Cubie.new(state.dup).rotate!
     end
 
     def to_s

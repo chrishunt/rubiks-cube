@@ -56,7 +56,7 @@ describe CubeSolver::Cubie do
     end
 
     it 'does not modify the cubie' do
-      original_state = subject.state
+      original_state = subject.state.dup
 
       subject.rotate
 
