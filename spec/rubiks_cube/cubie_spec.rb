@@ -17,7 +17,7 @@ describe RubiksCube::Cubie do
     end
 
     context 'when the state does not equal the state of the other' do
-      it 'returns true' do
+      it 'returns false' do
         expect(subject == described_class.new('UB')).to be_false
       end
     end
