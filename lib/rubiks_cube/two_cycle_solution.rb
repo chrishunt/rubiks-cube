@@ -33,6 +33,16 @@ module RubiksCube
       solution.flatten.join(' ').split.count
     end
 
+    def pretty
+      solution.each_slice(3).map do |setup, correction, undo|
+        step = []
+        step << "Setup:\t#{setup}" unless setup.empty?
+        step << "Fix:\t#{correction}"
+        step << "Undo:\t#{undo}" unless undo.empty?
+        step.join "\n"
+      end.join("\n\n").strip
+    end
+
     private
 
     def solution_for(step)
