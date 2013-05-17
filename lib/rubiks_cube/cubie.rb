@@ -1,20 +1,12 @@
 module RubiksCube
   # Generic cubie piece, either edge cubie or corner cubie
-  class Cubie
-    def initialize(state)
-      @cubie = state.size == 2 ? EdgeCubie.new(state) : CornerCubie.new(state)
-    end
-
+  Cubie = Struct.new(:state) do
     def ==(other)
       state == other.state
     end
 
-    def state
-      @cubie.state
-    end
-
     def rotate!
-      @cubie.rotate!
+      self.state = state.split('').rotate.join
       self
     end
 
@@ -23,7 +15,7 @@ module RubiksCube
     end
 
     def to_s
-      @cubie.state
+      state
     end
   end
 end

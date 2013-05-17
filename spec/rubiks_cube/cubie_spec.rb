@@ -43,8 +43,8 @@ describe RubiksCube::Cubie do
       let(:state) { 'URF' }
 
       it 'rotates the cubie once couter clockwise' do
-        expect(subject.rotate!.state).to eq 'FUR'
         expect(subject.rotate!.state).to eq 'RFU'
+        expect(subject.rotate!.state).to eq 'FUR'
         expect(subject.rotate!.state).to eq state
       end
     end
