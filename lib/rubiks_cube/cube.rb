@@ -157,15 +157,15 @@ module RubiksCube
 
     def turn(*sequences)
       sequences.each do |sequence|
-        current_cubie = sequence.shift
-        first_cubie = @state[current_cubie]
+        location = sequence.shift
+        first_cubie = @state.fetch(location)
 
-        sequence.each do |cubie|
-          @state[current_cubie] = @state[cubie]
-          current_cubie = cubie
+        sequence.each do |next_location|
+          @state[location] = @state.fetch(next_location)
+          location = next_location
         end
 
-        @state[current_cubie] = first_cubie
+        @state[location] = first_cubie
       end
     end
 
