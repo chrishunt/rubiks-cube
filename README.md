@@ -63,7 +63,7 @@ Starting with top edges and working down (counter-clockwise), enter the state
 of each cubie. After edges are entered, proceed to corners. See the
 [examples](#examples) below for more help.
 
-![](https://raw.github.com/chrishunt/rubiks-cube/chrishunt/update-readme/img/cube_instructions.jpg)
+![](https://raw.github.com/chrishunt/rubiks-cube/master/img/cube_instructions.jpg)
 
 ### Examples
 
@@ -72,7 +72,7 @@ to help you out.
 
 #### Solved Cube
 
-![](https://raw.github.com/chrishunt/rubiks-cube/chrishunt/update-readme/img/cube_solved.jpg)
+![](https://raw.github.com/chrishunt/rubiks-cube/master/img/cube_solved.jpg)
 
 A Rubik's Cube is solved by default, but let's take a look at entering the
 state of a solved cube manually so it makes sense.
@@ -89,7 +89,7 @@ cube.solved? #=> true
 
 #### Slightly Scrambled Cube
 
-![](https://raw.github.com/chrishunt/rubiks-cube/chrishunt/update-readme/img/cube_scramble_1.jpg)
+![](https://raw.github.com/chrishunt/rubiks-cube/master/img/cube_scramble_1.jpg)
 
 Now let's look at a slightly scrambled cube.
 
@@ -105,7 +105,7 @@ cube.solved? #=> false
 
 #### Fully Scrambled Cube
 
-![](https://raw.github.com/chrishunt/rubiks-cube/chrishunt/update-readme/img/cube_scramble_2.jpg)
+![](https://raw.github.com/chrishunt/rubiks-cube/master/img/cube_scramble_2.jpg)
 
 Finally, let's look at a pretty messed up cube. Here's the scramble if you'd
 like to try this one at home:
@@ -197,7 +197,7 @@ See [Usage](#usage) for an example of the `TwoCycleSolution`
 
 #### How It Works: Permutation
 
-![](https://raw.github.com/chrishunt/rubiks-cube/chrishunt/update-readme/img/cube_permutation.jpg)
+![](https://raw.github.com/chrishunt/rubiks-cube/master/img/cube_permutation.jpg)
 
 The permutation step is completed using only two algorithms. One swaps two
 edges and the other swaps two corners. The diagram above shows which edges and
@@ -210,7 +210,7 @@ setup move.
 
 #### How It Works: Orientation
 
-![](https://raw.github.com/chrishunt/rubiks-cube/chrishunt/update-readme/img/cube_orientation.jpg)
+![](https://raw.github.com/chrishunt/rubiks-cube/master/img/cube_orientation.jpg)
 
 The orientation step is completed using only two algorithms. One flips two
 edges and the other rotates two corners (one clockwise and the other
@@ -224,11 +224,11 @@ setup move.
 
 ## Algorithms
 
-All algorithms can be found in [`RubiksCube::Algorithms`](https://github.com/chrishunt/rubiks-cube/blob/chrishunt/update-readme/lib/rubiks_cube/algorithms.rb)
+All algorithms can be found in [`RubiksCube::Algorithms`](https://github.com/chrishunt/rubiks-cube/blob/master/lib/rubiks_cube/algorithms.rb)
 
 ### Algorithm Notation
 
-![](https://raw.github.com/chrishunt/rubiks-cube/chrishunt/update-readme/img/cube_algorithm.jpg)
+![](https://raw.github.com/chrishunt/rubiks-cube/master/img/cube_algorithm.jpg)
 
 Rubik's Cube algorithm notation is easy to understand, but may look confusing
 at first. Each face is represented by a letter:
@@ -259,7 +259,7 @@ these steps:
 
 #### M Slice
 
-![](https://raw.github.com/chrishunt/rubiks-cube/chrishunt/update-readme/img/cube_m_slice.jpg)
+![](https://raw.github.com/chrishunt/rubiks-cube/master/img/cube_m_slice.jpg)
 
 There is one special algorithm notation that does not map to a face. This is
 called the M slice. The M slice is the middle vertical layer of the Rubik's
