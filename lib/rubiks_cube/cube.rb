@@ -86,44 +86,36 @@ module RubiksCube
     end
 
     def r
-      turn [1, 5, 9, 6]
-      turn [13, 17, 18, 14]
+      turn [1, 5, 9, 6], [13, 17, 18, 14]
       rotate [13, 14, 14, 17, 17, 18]
       self
     end
 
     def l
-      turn [3, 7, 11, 4]
-      turn [12, 15, 19, 16]
+      turn [3, 7, 11, 4], [12, 15, 19, 16]
       rotate [12, 12, 15, 16, 19, 19]
       self
     end
 
     def u
-      turn [0, 1, 2, 3]
-      turn [12, 13, 14, 15]
+      turn [0, 1, 2, 3], [12, 13, 14, 15]
       self
     end
 
     def d
-      turn [8, 11, 10, 9]
-      turn [16, 19, 18, 17]
+      turn [8, 11, 10, 9], [16, 19, 18, 17]
       self
     end
 
     def f
-      turn [0, 4, 8, 5]
-      rotate [0, 4, 8, 5]
-      turn [12, 16, 17, 13]
-      rotate [12, 13, 13, 16, 16, 17]
+      turn [0, 4, 8, 5], [12, 16, 17, 13]
+      rotate [0, 4, 8, 5], [12, 13, 13, 16, 16, 17]
       self
     end
 
     def b
-      turn [2, 6, 10, 7]
-      rotate [2, 6, 10, 7]
-      turn [14, 18, 19, 15]
-      rotate [14, 15, 15, 18, 18, 19]
+      turn [2, 6, 10, 7], [14, 18, 19, 15]
+      rotate [2, 6, 10, 7], [14, 15, 15, 18, 18, 19]
       self
     end
 
@@ -163,20 +155,24 @@ module RubiksCube
       end.compact
     end
 
-    def turn(sequence)
-      current_cubie = sequence.shift
-      first_cubie = @state[current_cubie]
+    def turn(*sequences)
+      sequences.each do |sequence|
+        current_cubie = sequence.shift
+        first_cubie = @state[current_cubie]
 
-      sequence.each do |cubie|
-        @state[current_cubie] = @state[cubie]
-        current_cubie = cubie
+        sequence.each do |cubie|
+          @state[current_cubie] = @state[cubie]
+          current_cubie = cubie
+        end
+
+        @state[current_cubie] = first_cubie
       end
-
-      @state[current_cubie] = first_cubie
     end
 
-    def rotate(cubies)
-      cubies.each { |cubie| @state[cubie].rotate! }
+    def rotate(*sequences)
+      sequences.each do |cubies|
+        cubies.each { |cubie| @state[cubie].rotate! }
+      end
     end
 
     def perform_move!(move)
