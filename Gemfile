@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'rake'
-gem 'rspec'
-gem 'cane-hashcheck'
+# Specify your gem's dependencies in rubiks_cube.gemspec
+gemspec
