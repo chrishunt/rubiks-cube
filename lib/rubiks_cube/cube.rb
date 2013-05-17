@@ -85,10 +85,6 @@ module RubiksCube
       algorithm
     end
 
-    def undo!(algorithm)
-      perform! reverse(algorithm)
-    end
-
     def r
       turn [1, 5, 9, 6]
       turn [13, 17, 18, 14]
@@ -194,10 +190,6 @@ module RubiksCube
         else
           send operation
       end
-    end
-
-    def reverse(algorithm)
-      RubiksCube::Algorithms.reverse algorithm
     end
   end
 end

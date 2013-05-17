@@ -297,16 +297,6 @@ describe RubiksCube::Cube do
     end
   end
 
-  describe '#undo!' do
-    it 'performs the algorithm in reverse on the cube' do
-      subject.f.f.f.b.l.l.u.u.u.r
-
-      subject.undo! "F' B L2 U' R"
-
-      expect(subject).to be_solved
-    end
-  end
-
   describe 'face turns' do
     shared_examples_for 'a face turn' do
       it "rotates the face 90 degrees clockwise" do
