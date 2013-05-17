@@ -29,6 +29,10 @@ module RubiksCube
       @solution
     end
 
+    def solution_length
+      solution.flatten.join(' ').split.count
+    end
+
     private
 
     def solution_for(step)
