@@ -25,7 +25,7 @@ module RubiksCube
     end
 
     def solution
-      solve! unless solved?
+      solve!
       @solution
     end
 

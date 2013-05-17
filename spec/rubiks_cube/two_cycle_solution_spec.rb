@@ -83,11 +83,6 @@ describe RubiksCube::TwoCycleSolution do
       context 'when the cube has been solved' do
         before { subject.solve! }
 
-        it 'does not try to solve it again' do
-          subject.should_not_receive(:solve!)
-          subject.solution
-        end
-
         it 'returns the setup, algorithm, and undo moves' do
           expect(subject.solution).to eq([
             "", RubiksCube::Algorithms::Permutation::Edge, "",
