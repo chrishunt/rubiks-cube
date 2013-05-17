@@ -27,82 +27,39 @@ module RubiksCube
     private
 
     def solution_for(step)
-      [:edge, :corner].map do |cubie_type|
-        send "#{step}_solution_for", cubie_type
+      [:edge, :corner].map do |cubie|
+        solve_for cubie, step
       end
     end
 
-    def permutation_solution_for(cubie_type)
-      [].tap do |solution|
-        until cube.public_send("has_#{cubie_type}s_permuted?")
-          solution << [swap(cubie_type.to_sym, next_location_for(cubie_type))]
-        end
-      end
+    def solve_for(cubie, step)
+      solution = []
+      solution << [perform(cubie, step)] until finished_with?(cubie, step)
+      solution
     end
 
-    def orientation_solution_for(cubie_type)
-      [].tap do |solution|
-        until cube.public_send("has_#{cubie_type}s_oriented?")
-          solution << [rotate(cubie_type.to_sym)]
-        end
-      end
+    def finished_with?(cubie, step)
+      cube.public_send "has_correct_#{cubie}_#{step}?"
     end
 
-    def next_location_for(cubie_type)
-      buffer_cubie = send("permutation_buffer_#{cubie_type}")
-
-      if cube.public_send("#{cubie_type}_permuted?", buffer_cubie)
-        cube.public_send("unpermuted_#{cubie_type}_locations").first
-      else
-        cube.permuted_location_for buffer_cubie
-      end
+    def perform(cubie, step)
+      algorithms_for(cubie, step).map { |algorithm| cube.perform! algorithm }
     end
 
-    def next_unoriented_location_for(cubie_type)
-      cube.public_send("unoriented_#{cubie_type}_locations").tap do |locations|
+    def next_orientation_location_for(cubie)
+      incorrect_locations_for(cubie, :orientation).tap do |locations|
         locations.delete(0)
       end.first
     end
 
-    def swap(type, location)
-      setup = RubiksCube::Algorithms::PLL::Setup.fetch(type).fetch(location)
-      swap  = send("#{type}_swap_algorithm")
-      undo  = RubiksCube::Algorithms.reverse(setup)
+    def next_permutation_location_for(cubie)
+      buffer_cubie = send("permutation_buffer_#{cubie}")
 
-      [setup, swap, undo].map do |algorithm|
-        cube.perform! algorithm
-        algorithm
+      if cube.public_send("#{cubie}_permuted?", buffer_cubie)
+        incorrect_locations_for(cubie, :permutation).first
+      else
+        cube.permuted_location_for buffer_cubie
       end
-    end
-
-    def rotate(type)
-      setup = RubiksCube::Algorithms::OLL::Setup.fetch(type).fetch(
-        next_unoriented_location_for(type)
-      )
-
-      rotate = send("#{type}_rotate_algorithm")
-      undo   = RubiksCube::Algorithms.reverse(setup)
-
-      [setup, rotate, undo].map do |algorithm|
-        cube.perform! algorithm
-        algorithm
-      end
-    end
-
-    def edge_swap_algorithm
-      RubiksCube::Algorithms::PLL::T
-    end
-
-    def corner_swap_algorithm
-      RubiksCube::Algorithms::PLL::Y
-    end
-
-    def edge_rotate_algorithm
-      RubiksCube::Algorithms::OLL::I
-    end
-
-    def corner_rotate_algorithm
-      RubiksCube::Algorithms::OLL::H
     end
 
     def permutation_buffer_edge
@@ -111,6 +68,34 @@ module RubiksCube
 
     def permutation_buffer_corner
       cube.corners[0]
+    end
+
+    def incorrect_locations_for(cubie, step)
+      cube.public_send "incorrect_#{cubie}_#{step}_locations"
+    end
+
+    def algorithms_for(cubie, step)
+      location   = send("next_#{step}_location_for", cubie)
+      setup      = setup_algorithms_for(cubie, step, location)
+      correction = correction_algorithm_for(cubie, step)
+      undo       = RubiksCube::Algorithms.reverse(setup)
+
+      [ setup, correction, undo ]
+    end
+
+    def correction_algorithm_for(cubie, step)
+      load_algorithms step, cubie
+    end
+
+    def setup_algorithms_for(cubie, step, location)
+      load_algorithms(step, 'setup', cubie).fetch(location)
+    end
+
+    def load_algorithms(*classes)
+      Kernel.const_get(
+        "RubiksCube::Algorithms::" <<
+        classes.map(&:capitalize).flatten.join('::')
+      )
     end
   end
 end

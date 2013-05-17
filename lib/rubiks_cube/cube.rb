@@ -40,34 +40,34 @@ module RubiksCube
     end
 
     def has_correct_edge_permutation?
-      unpermuted_edge_locations.empty?
+      incorrect_edge_permutation_locations.empty?
     end
 
     def has_correct_corner_permutation?
-      unpermuted_corner_locations.empty?
+      incorrect_corner_permutation_locations.empty?
     end
 
     def has_correct_edge_orientation?
-      unoriented_edge_locations.empty?
+      incorrect_edge_orientation_locations.empty?
     end
 
     def has_correct_corner_orientation?
-      unoriented_corner_locations.empty?
+      incorrect_corner_orientation_locations.empty?
     end
 
-    def unpermuted_edge_locations
+    def incorrect_edge_permutation_locations
       unpermuted_locations_for :edges
     end
 
-    def unpermuted_corner_locations
+    def incorrect_corner_permutation_locations
       unpermuted_locations_for :corners
     end
 
-    def unoriented_edge_locations
+    def incorrect_edge_orientation_locations
       unoriented_locations_for :edges
     end
 
-    def unoriented_corner_locations
+    def incorrect_corner_orientation_locations
       unoriented_locations_for :corners
     end
 

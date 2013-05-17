@@ -49,74 +49,80 @@ describe RubiksCube::Cube do
     end
   end
 
-  describe '#unpermuted_edge_locations' do
+  describe '#incorrect_edge_permutation_locations' do
     context 'with unpermuted edges' do
       let(:state) {
         'UF UL UB UR FL FR BR BL DF DL DB DR UFL URF UBR ULB DLF DFR DRB DBL'
       }
 
       it 'returns the location of all unpermuted edges' do
-        expect(subject.unpermuted_edge_locations).to eq [1, 3, 9, 11]
+        expect(
+          subject.incorrect_edge_permutation_locations
+        ).to eq [1, 3, 9, 11]
       end
     end
 
     context 'with permuted edges' do
       it 'returns an empty array' do
-        expect(subject.unpermuted_edge_locations).to eq []
+        expect(subject.incorrect_edge_permutation_locations).to eq []
       end
     end
   end
 
-  describe '#unpermuted_corner_locations' do
+  describe '#incorrect_corner_permutation_locations' do
     context 'with unpermuted corners' do
       let(:state){
         'UF UR UB UL FL FR BR BL DF DR DB DL ULB UBR URF UFL DLF DFR DRB DBL'
       }
 
       it 'returns the locations of all unpermuted corners' do
-        expect(subject.unpermuted_corner_locations).to eq [0, 1, 2, 3]
+        expect(
+          subject.incorrect_corner_permutation_locations
+        ).to eq [0, 1, 2, 3]
       end
     end
 
     context 'with permuted corners' do
       it 'returns an empty array' do
-        expect(subject.unpermuted_corner_locations).to eq []
+        expect(subject.incorrect_corner_permutation_locations).to eq []
       end
     end
   end
 
-  describe '#unoriented_edge_locations' do
+  describe '#incorrect_edge_orientation_locations' do
     context 'with edges that are not oriented' do
       let(:state) {
         'FU UR BU UL FL RF RB LB FD DR DB DL UFL URF UBR ULB DLF DFR DRB DBL'
       }
 
       it 'returns the locations of all unoriented edges' do
-        expect(subject.unoriented_edge_locations).to eq [0, 2, 5, 6, 7, 8]
+        expect(
+          subject.incorrect_edge_orientation_locations
+        ).to eq [0, 2, 5, 6, 7, 8]
       end
     end
 
     context 'with oriented edges' do
       it 'returns an empty array' do
-        expect(subject.unoriented_edge_locations).to eq []
+        expect(subject.incorrect_edge_orientation_locations).to eq []
       end
     end
   end
 
-  describe '#unoriented_corner_locations' do
+  describe '#incorrect_corner_orientation_locations' do
     context 'with corners that are not oriented' do
       let(:state) {
         'UF UR UB UL FL FR BR BL DF DR DB DL FLU FUR UBR ULB DLF DFR DRB DBL'
       }
 
       it 'returns the locations of all unoriented corners' do
-        expect(subject.unoriented_corner_locations).to eq [0, 1]
+        expect(subject.incorrect_corner_orientation_locations).to eq [0, 1]
       end
     end
 
     context 'with oriented corners' do
       it 'returns an empty array' do
-        expect(subject.unoriented_corner_locations).to eq []
+        expect(subject.incorrect_corner_orientation_locations).to eq []
       end
     end
   end

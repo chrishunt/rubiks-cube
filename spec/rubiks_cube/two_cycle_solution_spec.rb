@@ -39,13 +39,13 @@ describe RubiksCube::TwoCycleSolution do
     end
 
     context 'when two edges have incorrect orientation' do
-      before { cube.perform! RubiksCube::Algorithms::OLL::I }
+      before { cube.perform! RubiksCube::Algorithms::Orientation::Edge }
 
       it_should_behave_like 'a cube that can be solved'
     end
 
     context 'when two corners have incorrect orientation' do
-      before { cube.perform! RubiksCube::Algorithms::OLL::H }
+      before { cube.perform! RubiksCube::Algorithms::Orientation::Corner }
 
       it_should_behave_like 'a cube that can be solved'
     end
@@ -67,9 +67,9 @@ describe RubiksCube::TwoCycleSolution do
     describe '#solution' do
       before do
         cube.perform!([
-          RubiksCube::Algorithms::PLL::T,
-          RubiksCube::Algorithms::PLL::Y,
-          RubiksCube::Algorithms::OLL::I,
+          RubiksCube::Algorithms::Permutation::Edge,
+          RubiksCube::Algorithms::Permutation::Corner,
+          RubiksCube::Algorithms::Orientation::Edge,
         ].join ' ')
 
         subject.solve!
@@ -77,12 +77,12 @@ describe RubiksCube::TwoCycleSolution do
 
       it 'returns the setup, algorithm, and undo moves' do
         expect(subject.solution).to eq([
-          "", RubiksCube::Algorithms::PLL::T, "",
-          "M2 D L2", RubiksCube::Algorithms::PLL::T, "L2 D' M2",
-          "R2 D' R2", RubiksCube::Algorithms::PLL::Y, "R2 D R2",
-          "", RubiksCube::Algorithms::PLL::Y, "",
-          "R B", RubiksCube::Algorithms::OLL::I, "B' R'",
-          "", RubiksCube::Algorithms::OLL::I, ""
+          "", RubiksCube::Algorithms::Permutation::Edge, "",
+          "M2 D L2", RubiksCube::Algorithms::Permutation::Edge, "L2 D' M2",
+          "R2 D' R2", RubiksCube::Algorithms::Permutation::Corner, "R2 D R2",
+          "", RubiksCube::Algorithms::Permutation::Corner, "",
+          "R B", RubiksCube::Algorithms::Orientation::Edge, "B' R'",
+          "", RubiksCube::Algorithms::Orientation::Edge, ""
         ])
       end
     end

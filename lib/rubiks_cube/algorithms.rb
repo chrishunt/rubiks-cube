@@ -13,12 +13,12 @@ module RubiksCube
       end.reverse.join ' '
     end
 
-    module PLL
-      T = "R U R' U' R' F R2 U' R' U' R U R' F'"
-      Y = "U F R U' R' U' R U R' F' R U R' U' R' F R F' U'"
+    module Permutation
+      Edge = "R U R' U' R' F R2 U' R' U' R U R' F'"
+      Corner = "U F R U' R' U' R U R' F' R U R' U' R' F R F' U'"
 
-      Setup = {
-        edge: {
+      module Setup
+        Edge = {
           0  => "M2 D L2",
           2  => "M2 D' L2",
           3  => "",
@@ -30,26 +30,26 @@ module RubiksCube
           9  => "D2 L2",
           10 => "D L2",
           11 => "L2"
-        },
+        }
 
-        corner: {
+        Corner = {
           1 => "R2 D' R2",
           2 => "",
           3 => "B2 D' R2",
           4 => "D R2",
           5 => "R2",
           6 => "D' R2",
-          7 => "D2 R2",
+          7 => "D2 R2"
         }
-      }
+      end
     end
 
-    module OLL
-      I = "M' U M' U M' U2 M U M U M U2"
-      H = "R' D' R D R' D' R D U' R' D' R D R' D' R D R' D' R D R' D' R D U"
+    module Orientation
+      Edge = "M' U M' U M' U2 M U M U M U2"
+      Corner = "R' D R F D F' U' F D' F' R' D' R U"
 
-      Setup = {
-        edge: {
+      module Setup
+        Edge = {
           1  => "R B",
           2  => "",
           3  => "L' B'",
@@ -61,9 +61,9 @@ module RubiksCube
           9  => "D B2",
           10 => "B2",
           11 => "D' B2"
-        },
+        }
 
-        corner: {
+        Corner = {
           1 => "",
           2 => "R'",
           3 => "B2 R2",
@@ -72,7 +72,7 @@ module RubiksCube
           6 => "R2",
           7 => "D' R2"
         }
-      }
+      end
     end
   end
 end
