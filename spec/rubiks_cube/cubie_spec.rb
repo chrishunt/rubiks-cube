@@ -63,5 +63,4 @@ describe RubiksCube::Cubie do
       expect(subject.state).to eq original_state
     end
   end
-
 end
