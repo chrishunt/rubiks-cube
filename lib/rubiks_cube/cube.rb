@@ -39,38 +39,6 @@ module RubiksCube
       cubie_permuted? :corners, corner
     end
 
-    def has_correct_edge_permutation?
-      incorrect_edge_permutation_locations.empty?
-    end
-
-    def has_correct_corner_permutation?
-      incorrect_corner_permutation_locations.empty?
-    end
-
-    def has_correct_edge_orientation?
-      incorrect_edge_orientation_locations.empty?
-    end
-
-    def has_correct_corner_orientation?
-      incorrect_corner_orientation_locations.empty?
-    end
-
-    def incorrect_edge_permutation_locations
-      unpermuted_locations_for :edges
-    end
-
-    def incorrect_corner_permutation_locations
-      unpermuted_locations_for :corners
-    end
-
-    def incorrect_edge_orientation_locations
-      unoriented_locations_for :edges
-    end
-
-    def incorrect_corner_orientation_locations
-      unoriented_locations_for :corners
-    end
-
     def permuted_location_for(cubie)
       while (location = SOLVED_STATE.index cubie.state) == nil
         cubie = cubie.rotate
@@ -125,6 +93,18 @@ module RubiksCube
       self
     end
 
+    [:edge, :corner].each do |cubie|
+      [:orientation, :permutation].each do |step|
+        define_method "incorrect_#{cubie}_#{step}_locations" do
+          send "incorrect_#{step}_locations_for", cubie
+        end
+
+        define_method "has_correct_#{cubie}_#{step}?" do
+          send("incorrect_#{cubie}_#{step}_locations").empty?
+        end
+      end
+    end
+
     private
 
     def build_state_from_string(state)
@@ -135,16 +115,16 @@ module RubiksCube
       send(type).index(cubie) == permuted_location_for(cubie)
     end
 
-    def unpermuted_locations_for(type)
-      send(type).each_with_index.map do |cubie, location|
+    def incorrect_permutation_locations_for(type)
+      send("#{type}s").each_with_index.map do |cubie, location|
         location unless location == permuted_location_for(cubie)
       end.compact
     end
 
-    def unoriented_locations_for(type)
-      send(type).each_with_index.map do |cubie, location|
+    def incorrect_orientation_locations_for(type)
+      send("#{type}s").each_with_index.map do |cubie, location|
         oriented_state = SOLVED_STATE.fetch(
-          if type == :corners
+          if type == :corner
             location + 12
           else
             location
