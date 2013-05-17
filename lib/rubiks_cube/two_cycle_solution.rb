@@ -1,7 +1,7 @@
 module RubiksCube
   # Very inefficient two-cycle solving algorithm, useful for blindfold
   class TwoCycleSolution
-    attr_reader :cube, :solution
+    attr_reader :cube
 
     def initialize(cube)
       @cube = Cube.new(cube.state)
@@ -22,6 +22,11 @@ module RubiksCube
         solution << solution_for(:orientation)
         solution.flatten
       end
+    end
+
+    def solution
+      solve! unless solved?
+      @solution
     end
 
     private

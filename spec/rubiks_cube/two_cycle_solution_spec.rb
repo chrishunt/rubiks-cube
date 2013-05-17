@@ -71,19 +71,33 @@ describe RubiksCube::TwoCycleSolution do
           RubiksCube::Algorithms::Permutation::Corner,
           RubiksCube::Algorithms::Orientation::Edge,
         ].join ' ')
-
-        subject.solve!
       end
 
-      it 'returns the setup, algorithm, and undo moves' do
-        expect(subject.solution).to eq([
-          "", RubiksCube::Algorithms::Permutation::Edge, "",
-          "M2 D L2", RubiksCube::Algorithms::Permutation::Edge, "L2 D' M2",
-          "R2 D' R2", RubiksCube::Algorithms::Permutation::Corner, "R2 D R2",
-          "", RubiksCube::Algorithms::Permutation::Corner, "",
-          "R B", RubiksCube::Algorithms::Orientation::Edge, "B' R'",
-          "", RubiksCube::Algorithms::Orientation::Edge, ""
-        ])
+      context 'when the cube has not been solved' do
+        it 'first solves the cube' do
+          subject.should_receive(:solve!)
+          subject.solution
+        end
+      end
+
+      context 'when the cube has been solved' do
+        before { subject.solve! }
+
+        it 'does not try to solve it again' do
+          subject.should_not_receive(:solve!)
+          subject.solution
+        end
+
+        it 'returns the setup, algorithm, and undo moves' do
+          expect(subject.solution).to eq([
+            "", RubiksCube::Algorithms::Permutation::Edge, "",
+            "M2 D L2", RubiksCube::Algorithms::Permutation::Edge, "L2 D' M2",
+            "R2 D' R2", RubiksCube::Algorithms::Permutation::Corner, "R2 D R2",
+            "", RubiksCube::Algorithms::Permutation::Corner, "",
+            "R B", RubiksCube::Algorithms::Orientation::Edge, "B' R'",
+            "", RubiksCube::Algorithms::Orientation::Edge, ""
+          ])
+        end
       end
     end
   end
