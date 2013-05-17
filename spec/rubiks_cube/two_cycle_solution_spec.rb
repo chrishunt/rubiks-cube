@@ -96,14 +96,14 @@ describe RubiksCube::TwoCycleSolution do
       end
     end
 
-    describe '#solution_length' do
+    describe '#length' do
       it 'returns the length of the solution' do
         cube.l.r
-        expect(subject.solution_length).to eq 634
+        expect(subject.length).to eq 634
       end
 
       it 'returns zero when cube already solved' do
-        expect(subject.solution_length).to be_zero
+        expect(subject.length).to be_zero
       end
     end
   end
