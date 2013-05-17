@@ -11,3 +11,12 @@ Want to contribute? Awesome! Thank you so much.
 5. Push to the branch (`git push origin my-new-feature`)
 6. Create new [Pull
    Request](https://help.github.com/articles/using-pull-requests)
+
+## Running The Tests
+
+```bash
+$ git clone https://github.com/chrishunt/rubiks-cube.git
+$ cd rubiks-cube
+$ bundle install
+$ bundle exec rake
+```
