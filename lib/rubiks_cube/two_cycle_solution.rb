@@ -107,14 +107,14 @@ module RubiksCube
     end
 
     def setup_algorithms_for(cubie, step, location)
-      load_algorithms(step, 'setup', cubie).fetch(location)
+      load_algorithms(step, :setup, cubie).fetch(location)
     end
 
-    def load_algorithms(*classes)
-      Kernel.const_get(
-        "RubiksCube::Algorithms::" <<
-        classes.map(&:capitalize).flatten.join('::')
-      )
+    def load_algorithms(*modules)
+      [ 'RubiksCube',
+        'Algorithms',
+        *modules.map(&:capitalize)
+      ].inject(Kernel) { |klass, mod| klass.const_get mod }
     end
   end
 end
