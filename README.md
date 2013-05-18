@@ -1,6 +1,7 @@
 # Rubik's Cube
 
 [![Travis CI](https://travis-ci.org/chrishunt/rubiks-cube.png)](https://travis-ci.org/chrishunt/rubiks-cube)
+[![Coverage Status](https://coveralls.io/repos/chrishunt/rubiks-cube/badge.png)](https://coveralls.io/r/chrishunt/rubiks-cube)
 
 Solve your Rubik's Cube with an **easy** two-cycle solution
 
