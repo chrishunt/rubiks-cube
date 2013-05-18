@@ -9,8 +9,9 @@ Championship](http://worldcubeassociation.org/results/p.php?i=2005HUNT01)
 with a time of 5 minutes and 40 seconds.
 
 With practice, you can easily average less than 3 minutes using this solution
-and will have enough understanding to progress to the [Fridrich CFOP](http://en.wikipedia.org/wiki/Fridrich_Method) method - taking you to 15 second solve times.
-WOW!
+and will have enough understanding to progress to the [Fridrich
+CFOP](http://en.wikipedia.org/wiki/Fridrich_Method) method - taking you to 15
+second solve times.  WOW!
 
 ## Usage
 
@@ -224,7 +225,8 @@ setup move.
 
 ## Algorithms
 
-All algorithms can be found in [`RubiksCube::Algorithms`](https://github.com/chrishunt/rubiks-cube/blob/master/lib/rubiks_cube/algorithms.rb)
+All algorithms can be found in
+[`RubiksCube::Algorithms`](https://github.com/chrishunt/rubiks-cube/blob/master/lib/rubiks_cube/algorithms.rb)
 
 ### Algorithm Notation
 
