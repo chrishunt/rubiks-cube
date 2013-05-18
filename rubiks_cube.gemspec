@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = RubiksCube::VERSION
   spec.authors       = ['Chris Hunt']
   spec.email         = ['c@chrishunt.co']
-  spec.description   = %q{Learn how to solve the Rubik's Cube. It's easy!}
-  spec.summary       = %q{Learn how to solve the Rubik's Cube. It's easy!}
+  spec.description   = %q{Solve your Rubik's Cube with a two-cycle solution}
+  spec.summary       = %q{Solve your Rubik's Cube with a two-cycle solution}
   spec.homepage      = 'https://github.com/chrishunt/rubiks-cube'
   spec.license       = 'MIT'
 
