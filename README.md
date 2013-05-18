@@ -1,5 +1,7 @@
 # Rubik's Cube
 
+[![Travis CI](https://travis-ci.org/chrishunt/rubiks-cube.png)](https://travis-ci.org/chrishunt/rubiks-cube)
+
 Solve your Rubik's Cube with an **easy** two-cycle solution
 
 ## Description
