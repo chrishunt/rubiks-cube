@@ -5,13 +5,31 @@ Can you solve the Rubik's Cube? Do you want to learn how? GREAT!
 We will teach you a very simple two-cycle solution for solving the Rubik's
 Cube. It's so simple that I used this exact solution to solve the cube
 blindfolded in the [2005 Rubik's World
-Championship](http://worldcubeassociation.org/results/p.php?i=2005HUNT01)
-with a time of 5 minutes and 40 seconds.
+Championship](http://worldcubeassociation.org/results/p.php?i=2005HUNT01) with
+a time of 5 minutes and 40 seconds. After you've mastered this solution, you
+will average less than 3 minutes and will have enough understanding to progress
+to the [Fridrich CFOP](http://en.wikipedia.org/wiki/Fridrich_Method) method -
+making it possible for 15 second solve times. WOW!
 
-With practice, you can easily average less than 3 minutes using this solution
-and will have enough understanding to progress to the [Fridrich
-CFOP](http://en.wikipedia.org/wiki/Fridrich_Method) method - taking you to 15
-second solve times.  WOW!
+## Sections
+
+  1. [Usage](#usage)
+  1. [Setting Rubik's Cube State](#setting-rubiks-cube-state)
+     - [Examples](#examples)
+       - [Solved Cube](#solved-cube)
+       - [Slightly Scrambled Cube](#slightly-scrambled-cube)
+       - [Fully Scrambled Cube](#fully-scrambled-cube)
+  1. [Turning a Rubik's Cube](#turning-a-rubiks-cube)
+  1. [Solving a Rubik's Cube](#solving-a-rubiks-cube)
+     - [Two Cycle Solution](#two-cycle-solution)
+       -  [How It Works: Permutation](#how-it-works-permutation)
+       -  [How It Works: Orientation](#how-it-works-orientation)
+  1. [Algorithms](#algorithms)
+     - [Algorithm Notation](#algorithm-notation)
+       - [M Slice](#m-slice)
+  1. [Installation](#installation)
+  1. [Contributing](#contributing)
+  1. [License](#license)
 
 ## Usage
 
@@ -46,11 +64,11 @@ puts solution.pretty
   # ...
 ```
 
-## Setting Rubik's Cube State Manually
+## Setting Rubik's Cube State
 
-If we'd like to start the Rubik's Cube in a different state, we can do that.
-Most people will want to do this if they have a cube sitting on their desk that
-is already scrambled.
+If you have a scrambled Rubik's Cube sitting in front of you right now, you
+may not know how to get it back to the solved position. That's OK! We can set
+the Rubik's Cube state manually and learn how to solve it.
 
 Describing a cube state may seem complicated at first, but it quickly becomes
 easy after you've done it a few times.
@@ -75,15 +93,15 @@ to help you out.
 
 ![](https://raw.github.com/chrishunt/rubiks-cube/master/img/cube_solved.jpg)
 
-A Rubik's Cube is solved by default, but let's take a look at entering the
-state of a solved cube manually so it makes sense.
+A Rubik's Cube is solved by default.
 
 ```ruby
 require 'rubiks_cube'
 
-cube = RubiksCube::Cube.new(
-  "UF UR UB UL FL FR BR BL DF DR DB DL UFL URF UBR ULB DLF DFR DRB DBL"
-)
+cube = RubiksCube::Cube.new
+
+cube.state
+  #=> "UF UR UB UL FL FR BR BL DF DR DB DL UFL URF UBR ULB DLF DFR DRB DBL"
 
 cube.solved? #=> true
 ```
@@ -92,7 +110,8 @@ cube.solved? #=> true
 
 ![](https://raw.github.com/chrishunt/rubiks-cube/master/img/cube_scramble_1.jpg)
 
-Now let's look at a slightly scrambled cube.
+Notice our cube is now slightly scrambled. We can start our Rubik's Cube in
+this state if we like:
 
 ```ruby
 require 'rubiks_cube'
@@ -108,8 +127,10 @@ cube.solved? #=> false
 
 ![](https://raw.github.com/chrishunt/rubiks-cube/master/img/cube_scramble_2.jpg)
 
-Finally, let's look at a pretty messed up cube. Here's the scramble if you'd
-like to try this one at home:
+And here's a fully scrambled cube. This looks hard to solve. We can start our
+cube in this state if we like and have the solver tell us a solution.
+
+Here's the scramble we used to mix the cube if you'd like to try it yourself:
 
 ```
 U D B2 U B D2 B2 F' R' U2 F U' L2 F L2 B2 L2 R' U R' U' D R2 F2 B2
@@ -127,9 +148,10 @@ cube.solved? #=> false
 
 ## Turning a Rubik's Cube
 
-Each Rubik's Cube face (l, r, f, b, d, u) can be turned clockwise manually by
-calling the appropriate method on the cube. For example, if we'd like to turn
-the right face twice, the down face once, and the back face three times:
+Each Rubik's Cube face ( **L**, **R**, **F**, **B**, **D**, **U** ) can be
+turned clockwise manually by calling the appropriate method on the cube. For
+example, if we'd like to turn the right face twice, the down face once, and the
+back face three times:
 
 ```ruby
 require 'rubiks_cube'
@@ -170,10 +192,10 @@ cube.state
 
 ## Solving a Rubik's Cube
 
-We currently only have a very simple two-cycle solution implemented. This
-solution is very inefficient, but wonderful for humans. Using the two-cycle
-solution, you can quickly learn how to solve the Rubik's Cube without using the
-computer.
+We've provided a simple two-cycle solution to help you solve the Rubik's Cube.
+This solution is very inefficient, but wonderful for humans. Using the
+two-cycle solution, you can quickly learn how to solve the Rubik's Cube without
+using the computer.
 
 ### Two Cycle Solution
 
