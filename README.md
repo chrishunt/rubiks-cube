@@ -1,5 +1,9 @@
 # Rubik's Cube
 
+Solve your Rubik's Cube with an **easy** two-cycle solution
+
+## Description
+
 Can you solve the Rubik's Cube? Do you want to learn how? GREAT!
 
 We will teach you a very simple two-cycle solution for solving the Rubik's
