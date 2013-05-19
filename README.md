@@ -15,8 +15,8 @@ blindfolded in the [2005 Rubik's World
 Championship](http://worldcubeassociation.org/results/p.php?i=2005HUNT01) with
 a time of 5 minutes and 40 seconds. After you've mastered this solution, you
 will average less than 3 minutes and will have enough understanding to progress
-to the [Fridrich CFOP](http://en.wikipedia.org/wiki/Fridrich_Method) method -
-making it possible for 15 second solve times. WOW!
+to the [Fridrich CFOP](http://en.wikipedia.org/wiki/Fridrich_Method) method.
+You'll be solving in less than 15 seconds in no time. WOW!
 
 ## Sections
 
