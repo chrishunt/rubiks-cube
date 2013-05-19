@@ -18,6 +18,10 @@ will average less than 3 minutes and will have enough understanding to progress
 to the [Fridrich CFOP](http://en.wikipedia.org/wiki/Fridrich_Method) method.
 You'll be solving the Rubik's Cube in less than 20 seconds in no time. WOW!
 
+<a href="http://www.youtube.com/watch?v=oAsDgVKjMLg" target="_blank">
+![](https://raw.github.com/chrishunt/rubiks-cube/update-readme/img/video_thumbnail.jpg)
+</a>
+
 ## Sections
 
   1. [Usage](#usage)
