@@ -14,7 +14,7 @@ Cube. It's so simple that I used this exact solution to solve the cube
 blindfolded in the [2005 Rubik's World
 Championship](http://worldcubeassociation.org/results/p.php?i=2005HUNT01) with
 a time of 5 minutes and 40 seconds. After you've mastered this solution, you
-will average less than 3 minutes and will have enough understanding to progress
+will average less than 2 minutes and will have enough understanding to progress
 to the [Fridrich CFOP](http://en.wikipedia.org/wiki/Fridrich_Method) method.
 You'll be solving the Rubik's Cube in less than 20 seconds in no time. WOW!
 
