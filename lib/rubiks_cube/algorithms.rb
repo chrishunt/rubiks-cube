@@ -1,4 +1,5 @@
 module RubiksCube
+  # Permutation and Orientation algorithms for two-cycle solution
   module Algorithms
     def self.reverse(algorithm)
       algorithm.split.map do |move|

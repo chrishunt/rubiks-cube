@@ -1,5 +1,5 @@
+# Generic cubie piece, either edge cubie or corner cubie
 module RubiksCube
-  # Generic cubie piece, either edge cubie or corner cubie
   Cubie = Struct.new(:state) do
     def ==(other)
       state == other.state
