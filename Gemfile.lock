@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rubiks_cube (1.0.2)
+    rubiks_cube (1.0.3)
 
 GEM
   remote: https://rubygems.org/
