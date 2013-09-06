@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rubiks-cube - bi-cycle solution</title>
+    <link rel='icon' type='image/png' href='./favicon.ico'>
+    <link rel='stylesheet' href='css/bootstrap.min.css'>
+    <link rel="stylesheet" href='css/index.css'>
+  </head>
+  <body>
+    <div id='wrap'>
+      <div class='container'>
+        <div class='page-header text-center'>
+          <h1>Bi-cycle Solution</h1>
+        </div>
+
+        <p class='lead text-center'>
+          Solve your Rubik's Cube using a <strong>simple</strong> two-cycle
+          solution.
+        </p>
+
+        <p>
+          <span class='glyphicon glyphicon-search'></span>
+          <strong>bi-cycle solution</strong>
+          /ˈbīsikəl səˈlo͞oSHən/
+          <em>(n)</em>
+          An artisanally crafted two-cycle Rubik's Cube solution consisting of
+          four steps: edge permutation, corner permutation, edge orientation,
+          and corner orientation.
+
+          For a detail explanation, see the
+          <a href='https://github.com/chrishunt/rubiks-cube' target='_blank'>
+            training companion.
+          </a>
+        </p>
+
+        <h2>Permutation</h2>
+
+        <p>Move edges pieces to the correct location.</p>
+
+
+        <div class='media'>
+          <a class="pull-left" href="#">
+            <img class='media-object' width='100px' src='img/edge-permutation.jpg'/>
+          </a>
+          <div class="media-body">
+            <h4 class="media-heading">
+              Swap Edges
+              <small>
+                (UL
+                <span class="glyphicon glyphicon-transfer"></span>
+                UR)
+              </small>
+            </h4>
+            <code>R U R' U' R' F R2 U' R' U' R U R' F'</code>
+          </div>
+        </div>
+
+        <div class='media'>
+          <a class="pull-left" href="#">
+            <img class='media-object' width='100px' src='img/corner-permutation.jpg'/>
+          </a>
+          <div class="media-body">
+            <h4 class="media-heading">
+              Swap Corners
+              <small>
+                (UBR
+                <span class="glyphicon glyphicon-transfer"></span>
+                UFL)
+              </small>
+            </h4>
+            <code>U F R U' R' U' R U R' F' R U R' U' R' F R F' U'</code>
+          </div>
+        </div>
+
+        <h2>Orientation</h2>
+
+        <p>Rotate pieces in place for correct orientation.</p>
+
+        <div class='media'>
+          <a class="pull-left" href="#">
+            <img class='media-object' width='100px' src='img/edge-orientation.jpg'/>
+          </a>
+          <div class="media-body">
+            <h4 class="media-heading">
+              Rotate Edges
+              <small>
+                (UF
+                <span class="glyphicon glyphicon-refresh"></span>
+                UB)
+              </small>
+            </h4>
+            <code>M' U M' U M' U2 M U M U M U2</code>
+          </div>
+        </div>
+
+        <div class='media'>
+          <a class="pull-left" href="#">
+            <img class='media-object' width='100px' src='img/corner-orientation.jpg'/>
+          </a>
+          <div class="media-body">
+            <h4 class="media-heading">
+              Rotate Corners
+              <small>
+                (URF
+                <span class="glyphicon glyphicon-refresh"></span>
+                UFL)
+              </small>
+            </h4>
+            <code>R' D R F D F' U' F D' F' R' D' R U</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id='footer'>
+      <div class='container'>
+        <p class='text-muted credit'>
+        rubiks-cube -
+        <a href='https://github.com/chrishunt/rubiks-cube/blob/master/LICENSE.txt' target='_blank'>
+          MIT License
+        </a> -
+        <a href='https://twitter.com/chrishunt' target='_blank'>Chris Hunt</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
