@@ -29,7 +29,7 @@ module RubiksCube
     end
 
     def length
-      solution.flatten.join(' ').split.count
+      solution.join(' ').split.count
     end
 
     def pretty
