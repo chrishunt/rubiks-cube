@@ -26,7 +26,6 @@ module RubiksCube
 
     def solution
       solve!
-      @solution
     end
 
     def length
