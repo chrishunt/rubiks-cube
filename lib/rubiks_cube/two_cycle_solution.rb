@@ -65,9 +65,9 @@ module RubiksCube
     end
 
     def next_orientation_location_for(cubie)
-      incorrect_locations_for(cubie, :orientation).tap do |locations|
-        locations.delete(0)
-      end.first
+      locations = incorrect_locations_for(cubie, :orientation)
+      locations.delete 0
+      locations.first
     end
 
     def next_permutation_location_for(cubie)
