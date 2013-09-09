@@ -6,10 +6,10 @@ describe RubiksCube::TwoCycleSolution do
   let(:cube)  { RubiksCube::Cube.new state }
   let(:state) { nil }
 
-  describe '#solve!' do
+  describe '#solution' do
     shared_examples_for 'a cube that can be solved' do
       it 'solves the cube' do
-        subject.solve!
+        subject.solution
         expect(subject).to be_solved
       end
     end
@@ -17,7 +17,7 @@ describe RubiksCube::TwoCycleSolution do
     it 'does not modify the original cube state' do
       original_cube_state = cube.l.state
 
-      subject.solve!
+      subject.solution
 
       expect(cube.state).to eq original_cube_state
     end
@@ -64,47 +64,21 @@ describe RubiksCube::TwoCycleSolution do
       end
     end
 
-    describe '#solution' do
-      before do
-        cube.perform!([
-          RubiksCube::Algorithms::Permutation::Edge,
-          RubiksCube::Algorithms::Permutation::Corner,
-          RubiksCube::Algorithms::Orientation::Edge,
-        ].join ' ')
-      end
+    it 'returns the setup, algorithm, and undo moves' do
+      cube.perform!([
+        RubiksCube::Algorithms::Permutation::Edge,
+        RubiksCube::Algorithms::Permutation::Corner,
+        RubiksCube::Algorithms::Orientation::Edge,
+      ].join(' '))
 
-      context 'when the cube has not been solved' do
-        it 'first solves the cube' do
-          subject.should_receive(:solve!)
-          subject.solution
-        end
-      end
-
-      context 'when the cube has been solved' do
-        before { subject.solve! }
-
-        it 'returns the setup, algorithm, and undo moves' do
-          expect(subject.solution).to eq([
-            "", RubiksCube::Algorithms::Permutation::Edge, "",
-            "M2 D L2", RubiksCube::Algorithms::Permutation::Edge, "L2 D' M2",
-            "R2 D' R2", RubiksCube::Algorithms::Permutation::Corner, "R2 D R2",
-            "", RubiksCube::Algorithms::Permutation::Corner, "",
-            "R B", RubiksCube::Algorithms::Orientation::Edge, "B' R'",
-            "", RubiksCube::Algorithms::Orientation::Edge, ""
-          ])
-        end
-      end
-    end
-
-    describe '#length' do
-      it 'returns the length of the solution' do
-        cube.l.r
-        expect(subject.length).to eq 634
-      end
-
-      it 'returns zero when cube already solved' do
-        expect(subject.length).to be_zero
-      end
+      expect(subject.solution).to eq([
+        "", RubiksCube::Algorithms::Permutation::Edge, "",
+        "M2 D L2", RubiksCube::Algorithms::Permutation::Edge, "L2 D' M2",
+        "R2 D' R2", RubiksCube::Algorithms::Permutation::Corner, "R2 D R2",
+        "", RubiksCube::Algorithms::Permutation::Corner, "",
+        "R B", RubiksCube::Algorithms::Orientation::Edge, "B' R'",
+        "", RubiksCube::Algorithms::Orientation::Edge, ""
+      ])
     end
   end
 end
