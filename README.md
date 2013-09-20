@@ -273,7 +273,7 @@ at first. Each face is represented by a letter:
 - **F**: Front Face
 - **B**: Back Face
 - **U**: Up Face (top)
-- **D**: Up Face (bottom)
+- **D**: Down Face (bottom)
 
 When we see a letter in an algorithm, then we turn that face 90 degrees
 clockwise. To determine which direction is clockwise, rotate the cube so that
