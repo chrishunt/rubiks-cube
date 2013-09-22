@@ -8,7 +8,9 @@ describe RubiksCube::StickerStateTransform do
   describe '#to_cube' do
     context 'when initialized with sticker state' do
       let(:state) {[
-        "g b b b w b o g b o w b o o g r r w r y y o y r r g o r w o y r w",
+        "g b b b w b o g b \
+
+         o w b o o g r r w r y y o y r r g o r w o y r w",
         "gw  bg      o yggowywyywrbbyrg  "
       ].join(' ')}
 

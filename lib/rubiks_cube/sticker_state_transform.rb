@@ -17,7 +17,7 @@ module RubiksCube
     ]
 
     def initialize(state)
-      @state = state.gsub(' ', '').split('')
+      @state = state.gsub(/\s/, '').split('')
     end
 
     def to_cube
