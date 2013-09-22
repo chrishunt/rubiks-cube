@@ -81,19 +81,20 @@ If you have a scrambled Rubik's Cube sitting in front of you right now, you
 may not know how to get it back to the solved position. That's OK! We can set
 the Rubik's Cube state manually and learn how to solve it.
 
-Describing a cube state may seem complicated at first, but it quickly becomes
-easy after you've done it a few times.
+Starting with the **F** face, enter the color of each sticker from top-left to
+bottom-right. You may use any characters you like to describe the color of your
+cube, but make sure all six colors are uniq. Whitespace is not important.
 
-Hold your Rubik's Cube in your hand. Notice that the center of each face does
-not move when you rotate a side. The is the basis for entering cube state
-manually. If the center of a face is red, then that face will be red when the
-cube is solved.
+The cube state must be entered in the following order:
 
-Starting with top edges and working down (counter-clockwise), enter the state
-of each cubie. After edges are entered, proceed to corners. See the
-[examples](#examples) below for more help.
+1. **F**: Front Face
+1. **R**: Right Face
+1. **B**: Back Face
+1. **L**: Left Face
+1. **U**: Up Face (top)
+1. **D**: Down Face (bottom)
 
-![](https://raw.github.com/chrishunt/rubiks-cube/master/img/cube_instructions.jpg)
+See the [examples](#examples) below for more help.
 
 ### Examples
 
@@ -111,8 +112,14 @@ require 'rubiks_cube'
 
 cube = RubiksCube::Cube.new
 
-cube.state
-  #=> "UF UR UB UL FL FR BR BL DF DR DB DL UFL URF UBR ULB DLF DFR DRB DBL"
+cube.state = <<-STATE
+  G G G G G G G G G
+  Y Y Y Y Y Y Y Y Y
+  B B B B B B B B B
+  W W W W W W W W W
+  R R R R R R R R R
+  O O O O O O O O O
+STATE
 
 cube.solved? #=> true
 ```
@@ -121,31 +128,21 @@ cube.solved? #=> true
 
 ![](https://raw.github.com/chrishunt/rubiks-cube/master/img/cube_scramble_1.jpg)
 
-Our cube is now slightly scrambled and we can set our Rubik's Cube to this
-state if we like.
-
-Starting at the upper-front edge, we describe the state of each cubie in the
-order [oulined above](#setting-rubiks-cube-state). The state is described by
-explaining the home position of each color.
-
-In this example, notice that the first edge piece is yellow and green. We
-describe the state of this piece as **RF** because yellow belongs on the **R**
-face and green belongs on the **F** face.
-
-Notice the second edge is green and red. We describe this state as **FU**
-because green belongs on the **F** face and red belongs on the **U** face.
-
-The same method is used to describe the corners. Notice the second corner (in
-the upper-right location) is green, red, and yellow. We describe the state of
-this cubie as **FUR** because green belongs on the **F** face, red belongs on
-the **U** face, and yellow belongs on the **R** face.
+Our cube is now slightly scrambled.
 
 ```ruby
 require 'rubiks_cube'
 
-cube = RubiksCube::Cube.new(
-  "RF FU UB UL FL UR BR BL DF DR DB DL UFL FUR UBR ULB DLF DFR DRB BLD"
-)
+cube = RubiksCube::Cube.new
+
+cube.state = <<-STATE
+  G G Y G G R G G G
+  R R Y Y Y Y Y Y Y
+  B B B B B B B B W
+  W W W W W W O W W
+  R R R R R G R Y G
+  O O O O O O B O O
+STATE
 
 cube.solved? #=> false
 ```
@@ -154,8 +151,8 @@ cube.solved? #=> false
 
 ![](https://raw.github.com/chrishunt/rubiks-cube/master/img/cube_scramble_2.jpg)
 
-And here's a fully scrambled cube. This looks hard to solve. We can start our
-cube in this state if we like and have the solver tell us a solution.
+Here's a fully scrambled cube. This looks hard to solve. We can start our cube
+in this state if we like and have the solver tell us a solution.
 
 Here's the scramble we used to mix the cube if you'd like to try it yourself:
 
@@ -166,9 +163,16 @@ U D B2 U B D2 B2 F' R' U2 F U' L2 F L2 B2 L2 R' U R' U' D R2 F2 B2
 ```ruby
 require 'rubiks_cube'
 
-cube = RubiksCube::Cube.new(
-  "RF DL UB DF UF DB FL LB UL DR BR UR FUR LFD UFL DRB BLD DFR BRU LBU"
-)
+cube = RubiksCube::Cube.new
+
+cube.state = <<-STATE
+  R G O R G O O W G
+  G W W B Y W Y Y Y
+  G B B G B W R Y B
+  Y G Y B W G R Y W
+  O R R O R O G Y W
+  B R O R O O W B B
+STATE
 
 cube.solved? #=> false
 ```
