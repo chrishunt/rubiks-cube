@@ -11,6 +11,12 @@ module RubiksCube
       )
     end
 
+    def state=(stickers)
+      @state = build_state_from_string(
+        StickerStateTransform.new(stickers).to_cube
+      )
+    end
+
     def ==(other)
       state == other.state
     end

@@ -23,6 +23,12 @@ describe RubiksCube::Cube do
     end
   end
 
+  describe '#state=' do
+    it 'changes the state of the cube' do
+      expect { subject.state = 'a b c' }.to change { subject.state }
+    end
+  end
+
   describe '==' do
     it 'returns true when two cubes have the same state' do
       expect(subject).to eq described_class.new(state)
