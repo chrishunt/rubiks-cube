@@ -121,8 +121,24 @@ cube.solved? #=> true
 
 ![](https://raw.github.com/chrishunt/rubiks-cube/master/img/cube_scramble_1.jpg)
 
-Notice our cube is now slightly scrambled. We can start our Rubik's Cube in
-this state if we like:
+Our cube is now slightly scrambled and we can set our Rubik's Cube to this
+state if we like.
+
+Starting at the upper-front edge, we describe the state of each cubie in the
+order [oulined above](#setting-rubiks-cube-state). The state is described by
+explaining the home position of each color.
+
+In this example, notice that the first edge piece is yellow and green. We
+describe the state of this piece as **RF** because yellow belongs on the **R**
+face and green belongs on the **F** face.
+
+Notice the second edge is green and red. We describe this state as **FU**
+because green belongs on the **F** face and red belongs on the **U** face.
+
+The same method is used to describe the corners. Notice the second corner (in
+the upper-right location) is green, red, and yellow. We describe the state of
+this cubie as **FUR** because green belongs on the **F** face, red belongs on
+the **U** face, and yellow belongs on the **R** face.
 
 ```ruby
 require 'rubiks_cube'
