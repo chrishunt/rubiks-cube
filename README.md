@@ -83,7 +83,7 @@ the Rubik's Cube state manually and learn how to solve it.
 
 Starting with the **F** face, enter the color of each sticker from top-left to
 bottom-right. You may use any characters you like to describe the color of your
-cube, but make sure all six colors are uniq. Whitespace is not important.
+cube, but make sure all six colors are unique. Whitespace is not important.
 
 The cube state must be entered in the following order:
 
