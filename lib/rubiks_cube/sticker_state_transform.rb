@@ -16,18 +16,37 @@ module RubiksCube
       46, 7 , 50, 16, 52, 25, 48, 34
     ]
 
+    LOCATION_COUNT = 54
+
     def initialize(state)
       @state = state.gsub(/\s/, '').split('')
+      if @state.length < LOCATION_COUNT
+        raise 'too few stickers'
+      elsif @state.length > LOCATION_COUNT
+        raise 'too many stickers'
+      end
     end
 
     def to_cube
-      (edges + corners).join(' ').gsub(/./) { |c| color_mapping.fetch(c, c) }
+      (edges + corners).join(' ').gsub(/./) { |c| map_color(c) }
     end
 
     private
 
+    def map_color(color)
+      return ' ' if color == ' '
+      @color_mapping ||= color_mapping
+      @color_mapping[color] or
+        raise "#{color} is not listed in the center anywhere"
+    end
+
     def color_mapping
-      Hash[state.values_at(*CENTER_LOCATIONS).zip %w(F R B L U D)]
+      center_values = state.values_at(*CENTER_LOCATIONS)
+      dup = center_values.detect do |e|
+        center_values.rindex(e) != center_values.index(e)
+      end
+      raise "#{dup} is listed in the center twice" if dup
+      Hash[center_values.zip %w(F R B L U D)]
     end
 
     def edges
