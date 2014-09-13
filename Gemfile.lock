@@ -21,7 +21,7 @@ GEM
     mime-types (1.23)
     multi_json (1.7.7)
     parallel (0.7.1)
-    rake (10.1.0)
+    rake (10.3.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec (2.13.0)
@@ -45,6 +45,6 @@ DEPENDENCIES
   bundler (~> 1.7.2)
   cane-hashcheck
   coveralls
-  rake
+  rake (~> 10.3.2)
   rspec
   rubiks_cube!
