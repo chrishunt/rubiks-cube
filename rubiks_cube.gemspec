@@ -21,6 +21,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.7.2'
   spec.add_development_dependency 'rake',    '~> 10.3.2'
   spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'cane-hashcheck'
+  spec.add_development_dependency 'cane-hashcheck', '~> 1.2.0'
   spec.add_development_dependency 'coveralls'
 end
