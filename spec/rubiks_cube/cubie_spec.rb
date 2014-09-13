@@ -12,13 +12,13 @@ describe RubiksCube::Cubie do
   describe '==' do
     context 'when the state equals the state of the other' do
       it 'returns true' do
-        expect(subject == described_class.new(state)).to be_true
+        expect(subject == described_class.new(state)).to be true
       end
     end
 
     context 'when the state does not equal the state of the other' do
       it 'returns false' do
-        expect(subject == described_class.new('UB')).to be_false
+        expect(subject == described_class.new('UB')).to be false
       end
     end
   end

@@ -182,8 +182,8 @@ describe RubiksCube::Cube do
       permuted_edge = subject.edges[4]
       unpermuted_edge = subject.edges[0]
 
-      expect(subject.edge_permuted? unpermuted_edge).to be_false
-      expect(subject.edge_permuted? permuted_edge).to be_true
+      expect(subject.edge_permuted? unpermuted_edge).to be false
+      expect(subject.edge_permuted? permuted_edge).to be true
     end
   end
 
@@ -194,8 +194,8 @@ describe RubiksCube::Cube do
       permuted_corner = subject.corners[2]
       unpermuted_corner = subject.corners[1]
 
-      expect(subject.corner_permuted? unpermuted_corner).to be_false
-      expect(subject.corner_permuted? permuted_corner).to be_true
+      expect(subject.corner_permuted? unpermuted_corner).to be false
+      expect(subject.corner_permuted? permuted_corner).to be true
     end
   end
 
