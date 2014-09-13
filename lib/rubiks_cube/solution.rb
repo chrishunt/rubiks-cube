@@ -30,8 +30,7 @@ module RubiksCube
     end
 
     def length
-      (solution.respond_to?(:flatten) ? solution.flatten.join(' ') : solution)
-        .split.count
+      Array(solution).flatten.join(' ').split.count
     end
   end
 end
