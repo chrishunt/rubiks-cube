@@ -1,6 +1,6 @@
 # Rubik's Cube
 
-[![Travis CI](https://travis-ci.org/chrishunt/rubiks-cube.png)](https://travis-ci.org/chrishunt/rubiks-cube)
+[![Travis CI](http://img.shields.io/travis/chrishunt/rubiks-cube.svg?style=flat)](https://travis-ci.org/chrishunt/rubiks-cube)
 
 Solve your Rubik's Cube with an **easy** two-cycle solution
 
