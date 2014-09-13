@@ -1,5 +1,6 @@
 # Rubik's Cube
 
+[![Gem Version](http://img.shields.io/gem/v/rubiks_cube.svg?style=flat)](http://rubygems.org/gems/rubiks_cube)
 [![Travis CI](http://img.shields.io/travis/chrishunt/rubiks-cube.svg?style=flat)](https://travis-ci.org/chrishunt/rubiks-cube)
 
 Solve your Rubik's Cube with an **easy** two-cycle solution
