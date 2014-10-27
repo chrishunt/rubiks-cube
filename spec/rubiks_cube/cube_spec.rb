@@ -24,8 +24,15 @@ describe RubiksCube::Cube do
   end
 
   describe '#state=' do
-    it 'changes the state of the cube' do
-      expect { subject.state = 'a b c' }.to change { subject.state }
+    it 'expects a sticker-style state' do
+      expect { subject.state = <<-STATE }.to change { subject.state }
+          R G O R G O O W G
+          G W W B Y W Y Y Y
+          G B B G B W R Y B
+          Y G Y B W G R Y W
+          O R R O R O G Y W
+          B R O R O O W B B
+      STATE
     end
   end
 

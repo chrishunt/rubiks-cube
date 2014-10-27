@@ -20,5 +20,77 @@ describe RubiksCube::StickerStateTransform do
         )
       end
     end
+
+    context "for a solved cube" do
+      let(:state) { <<-STATE }
+        BBB BBB BBB WWW WWW WWW RRR RRR RRR YYY YYY YYY OOO OOO OOO GGG GGG GGG
+      STATE
+
+      it 'transforms to cube state' do
+        expect(subject.to_cube).to eq(
+          "UF UR UB UL FL FR BR BL DF DR DB DL UFL URF UBR ULB DLF DFR DRB DBL"
+        )
+      end
+    end
+
+    context 'for an example with a few scrambled faces' do
+      let(:state) { <<-STATE }
+        GGY GGR GGG RRY YYY YYY WWW WWW WWB BBB BBB OBB RRR RRG RYG OOO OOO WOO
+      STATE
+
+      it 'transforms to cube state' do
+        expect(subject.to_cube).to eq(
+          "RF FU UB UL FL UR BR BL DF DR DB DL UFL FUR UBR ULB DLF DFR DRB BLD"
+        )
+      end
+    end
+
+    context 'with too few letters' do
+      let(:state) {
+        'GGY GGR GGG RRY YYY YYY WW WWW WWB BBB BBB OBB RRR RRG RYG OOO OOO WOO'
+      }
+
+      it 'throws an exception' do
+        expect {
+          subject.to_cube
+        }.to raise_error('too few stickers')
+      end
+    end
+
+    context 'with too many letters' do
+      let(:state) { <<-STATE }
+        GGY GGR GGG RRY YYY YYY WWWW WWW WWB BBB BBB OBB RRR RRG RYG OOO OOO WOO
+      STATE
+
+      it 'throws an exception' do
+        expect {
+          subject.to_cube
+        }.to raise_error('too many stickers')
+      end
+    end
+
+    context 'two center faces are identical' do
+      let(:state) { <<-STATE }
+        BBB BBB BBB WWW WBW WWW RRR RRR RRR YYY YYY YYY OOO OOO OOO GGG GGG GGG
+      STATE
+
+      it 'throws an exception' do
+        expect {
+          subject.to_cube
+        }.to raise_error('B is listed in the center twice')
+      end
+    end
+
+    context 'with a color not in a center face' do
+      let(:state) { <<-STATE }
+        PBB BBB BBB WWW WWW WWW RRR RRR RRR YYY YYY YYY OOO OOO OOO GGG GGG GGG
+      STATE
+
+      it 'throws an exception' do
+        expect {
+          subject.to_cube
+        }.to raise_error('P is not listed in the center anywhere')
+      end
+    end
   end
 end
